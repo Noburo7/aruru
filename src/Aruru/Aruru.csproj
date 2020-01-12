@@ -46,14 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AruruForm\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AruruForm\MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Course\Impl\Sapporo.cs" />
+    <Compile Include="Course\Impl\Hanshin.cs" />
+    <Compile Include="Course\Impl\Fukushima.cs" />
+    <Compile Include="Course\Impl\Nigata.cs" />
+    <Compile Include="Course\Impl\Chukyo.cs" />
+    <Compile Include="Course\Impl\Kokura.cs" />
+    <Compile Include="Course\Impl\Hakodate.cs" />
+    <Compile Include="Course\ICourse.cs" />
+    <Compile Include="Course\Impl\Kyoto.cs" />
+    <Compile Include="Course\Impl\Nakayama.cs" />
+    <Compile Include="Course\Impl\Tokyo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AruruForm\MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuback.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
