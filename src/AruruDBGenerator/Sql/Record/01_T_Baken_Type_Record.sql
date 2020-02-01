@@ -1,0 +1,9 @@
+INSERT INTO t_baken_type VALUES(1, '単勝');
+INSERT INTO t_baken_type VALUES(2, '複勝');
+INSERT INTO t_baken_type VALUES(3, '枠連');
+INSERT INTO t_baken_type VALUES(4, '馬連');
+INSERT INTO t_baken_type VALUES(5, '馬単');
+INSERT INTO t_baken_type VALUES(6, 'ワイド');
+INSERT INTO t_baken_type VALUES(7, '3連複');
+INSERT INTO t_baken_type VALUES(8, '3連単');
+INSERT INTO t_baken_type VALUES(999, 'その他');
