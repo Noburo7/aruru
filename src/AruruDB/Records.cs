@@ -1,57 +1,57 @@
 ﻿namespace AruruDB
 {
-    public struct BakenTypeTableRecord {
-        public int ID;
-        public string Name;
+    public class BakenTypeTableRecord {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 
-    public struct CourseTableRecord {
-        public int ID;
-        public int TrackID;
-        public int TrackTypeID;
-        public int Distance;
+    public class CourseTableRecord {
+        public int ID { get; set; }
+        public int TrackID { get; set; }
+        public int TrackTypeID { get; set; }
+        public int Distance { get; set; }
     }
 
-    public struct RaceClassTableRecord {
-        public int ID;
-        public string Name;
+    public class RaceClassTableRecord {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 
-    public struct TrackTableRecord{
-        public int ID;
-        public string Name;
+    public class TrackTableRecord{
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 
-    public struct TrackConditionTableRecord {
-        public int ID;
-        public string Name;
+    public class TrackConditionTableRecord {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 
-    public struct TrackTypeTableRecord {
-        public int ID;
-        public string Name;
+    public class TrackTypeTableRecord {
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 
-    public struct RaceTableRecord {
-        public int ID;
-        public string Date;
-        public int TrackID;
-        public int RaceNumber;
-        public string RaceName;
-        public int TrackTypeID;
-        public int Distance;
-        public int RaceClassID;
-        public int TrackConditionID;
-        public int IsHandicap;
-        public int IsOnlyFemale;
-        public int IsOnlyYouth;
+    public class RaceTableRecord {
+        public int ID { get; set; }
+        public string Date { get; set; }
+        public int TrackID { get; set; }
+        public int RaceNumber { get; set; }
+        public string RaceName { get; set; }
+        public int TrackTypeID { get; set; }
+        public int Distance { get; set; }
+        public int RaceClassID { get; set; }
+        public int TrackConditionID { get; set; }
+        public int IsHandicap { get; set; }
+        public int IsOnlyFemale { get; set; }
+        public int IsOnlyYouth { get; set; }
     }
 
-    public struct BakenTableRecord {
-        public int BakenID;
-        public int RaceID;
-        public int BakenTypeID;
-        public int Investment;
-        public int Payout;
+    public class BakenTableRecord {
+        public int BakenID { get; set; }
+        public int RaceID { get; set; }
+        public int BakenTypeID { get; set; }
+        public int Investment { get; set; }
+        public int Payout { get; set; }
     }    
 }
