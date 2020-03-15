@@ -4,10 +4,13 @@ using System.Windows.Forms;
 
 namespace Aruru.AruruForm
 {
+    /// <summary>
+    /// 馬券登録・編集画面
+    /// </summary>
     public partial class BakenRegistForm : Form
     {
         public Baken Baken { get; set; }
-
+        private AruruDataBase _database;
 
         public BakenRegistForm() {
             InitializeComponent();

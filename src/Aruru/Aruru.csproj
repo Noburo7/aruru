@@ -70,7 +70,10 @@
     <Compile Include="AruruForm\MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Baken.cs" />
+    <Compile Include="Model\Baken.cs" />
+    <Compile Include="Model\Bet.cs" />
+    <Compile Include="Feature\IBaken.cs" />
+    <Compile Include="Feature\IBet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AruruForm\BakenMenuForm.resx">

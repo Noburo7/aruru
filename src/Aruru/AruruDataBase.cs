@@ -38,34 +38,41 @@ namespace Aruru
             BakenTable.LoadTable();
         }
 
-        public List<Baken> GenerateBakenList() {
-            var bakenList = new List<Baken>();
-            foreach (var record in RaceTable.Records) {
-                var baken = new Baken();
-                baken.RaceID = record.ID;
-                baken.Date = DateTime.Parse(record.Date);
-                baken.TrackName = TrackTable.ReturnNameFor(record.TrackID);
-                baken.RaceNum = record.RaceNumber;
-                baken.RaceName = record.RaceName;
-                baken.TrackType = TrackTypeTable.ReturnNameFor(record.TrackTypeID);
-                baken.Distance = record.Distance;
-                baken.Class = RaceClassTable.ReturnNameFor(record.RaceClassID);
-                baken.TrackCondition = TrackConditionTable.ReturnNameFor(record.TrackConditionID);
-                baken.IsHandicap = record.IsHandicap == 1;
-                baken.IsOnlyFemale = record.IsOnlyFemale == 1;
-                baken.IsOnlyYouth = record.IsOnlyYouth == 1;
+        public IEnumerable<IBaken> GenerateBakenList()
+        {
+            var bakenList = new List<IBaken>();
+            foreach (var record in RaceTable.Records)
+            {
+                var baken = new Baken
+                {
+                    RaceID = record.ID,
+                    Date = DateTime.Parse(record.Date),
+                    TrackName = TrackTable.ReturnNameFor(record.TrackID),
+                    RaceNum = record.RaceNumber,
+                    RaceName = record.RaceName,
+                    TrackType = TrackTypeTable.ReturnNameFor(record.TrackTypeID),
+                    Distance = record.Distance,
+                    Class = RaceClassTable.ReturnNameFor(record.RaceClassID),
+                    TrackCondition = TrackConditionTable.ReturnNameFor(record.TrackConditionID),
+                    IsHandicap = record.IsHandicap == 1,
+                    IsOnlyFemale = record.IsOnlyFemale == 1,
+                    IsOnlyYouth = record.IsOnlyYouth == 1
+                };
 
-                baken.Bettings = new List<Betting>();
+                var bettings = new List<IBet>();
                 var targetList = BakenTable.Records.Select(o => o.RaceID == record.ID) as List<BakenTableRecord>;
-                foreach (var item in targetList) {
-                    var betting = new Betting();
-                    betting.ID = item.BakenID;
-                    betting.TypeID = item.BakenTypeID;
-                    betting.Investment = item.Investment;
-                    betting.Payout = item.Payout;
-                    baken.Bettings.Add(betting);
+                foreach (var item in targetList)
+                {
+                    var betting = new Bet
+                    {
+                        ID = item.BakenID,
+                        TypeID = item.BakenTypeID,
+                        Investment = item.Investment,
+                        Payout = item.Payout
+                    };
+                    bettings.Add(betting);
                 }
-
+                baken.Bettings = bettings;
                 bakenList.Add(baken);
             }
 

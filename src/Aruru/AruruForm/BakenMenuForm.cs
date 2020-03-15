@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Aruru.AruruForm
 {
+    /// <summary>
+    /// 馬券メニュー画面
+    /// </summary>
     public partial class BakenMenuForm : Form
     {
         private AruruDataBase _database = new AruruDataBase("AruruDB.sqlite");
@@ -14,14 +17,11 @@ namespace Aruru.AruruForm
         }
 
         private void NewRegistButton_Click(object sender, EventArgs e) {
-            /*
             using (var form = new BakenRegistForm()) {
                 if (form.ShowDialog() == DialogResult.OK) {
-                    _bakenList.AddNewBaken(form.Baken);
                     UpdateBakenListView();
                 }
             }
-            */
         }
 
         private void Form_Load(object sender, EventArgs e) {
