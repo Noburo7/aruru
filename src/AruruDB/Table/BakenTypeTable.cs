@@ -5,7 +5,7 @@ namespace AruruDB
 {
     public class BakenTypeTable : Table
     {
-        private List<BakenTypeTableRecord> records;
+        public List<BakenTypeTableRecord> Records { get; private set; }
 
         public BakenTypeTable(string dbNm) {
             TableName = "t_baken_type";
@@ -13,7 +13,7 @@ namespace AruruDB
         }
 
         public override bool LoadTable() {
-            records = new List<BakenTypeTableRecord>();
+            Records = new List<BakenTypeTableRecord>();
             var db = new SQLiteDB(DBName);
             try {
                 var table = db.Execute(CreateSQLForLoad());
@@ -22,7 +22,7 @@ namespace AruruDB
                         ID = int.Parse(row[0]),
                         Name = row[1]
                     };
-                    records.Add(bakenType);
+                    Records.Add(bakenType);
                 }
                 return true;
             }

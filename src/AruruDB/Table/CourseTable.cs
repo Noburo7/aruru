@@ -5,7 +5,7 @@ namespace AruruDB
 {
     public class CourseTable : Table
     {
-        private List<CourseTableRecord> records;
+        public List<CourseTableRecord> Records { get; private set; }
 
         public CourseTable(string dbNm) {
             TableName = "t_course";
@@ -13,7 +13,7 @@ namespace AruruDB
         }
 
         public override bool LoadTable() {
-            records = new List<CourseTableRecord>();
+            Records = new List<CourseTableRecord>();
             var db = new SQLiteDB(DBName);
             try {
                 var table = db.Execute(CreateSQLForLoad());
@@ -23,7 +23,7 @@ namespace AruruDB
                     course.TrackID = int.Parse(row[1]);
                     course.TrackTypeID = int.Parse(row[2]);
                     course.Distance = int.Parse(row[3]);
-                    records.Add(course);
+                    Records.Add(course);
                 }
                 return true;
             }

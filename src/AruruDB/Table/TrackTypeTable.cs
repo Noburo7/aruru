@@ -6,7 +6,7 @@ namespace AruruDB
 {
     public class TrackTypeTable : Table
     {
-        private List<TrackTypeTableRecord> records;
+        public List<TrackTypeTableRecord> Records { get; private set; }
 
         public TrackTypeTable(string dbNm) {
             TableName = "t_track_type";
@@ -14,7 +14,7 @@ namespace AruruDB
         }
 
         public override bool LoadTable() {
-            records = new List<TrackTypeTableRecord>();
+            Records = new List<TrackTypeTableRecord>();
             var db = new SQLiteDB(DBName);
             try {
                 var table = db.Execute(CreateSQLForLoad());
@@ -22,7 +22,7 @@ namespace AruruDB
                     var trackType = new TrackTypeTableRecord();
                     trackType.ID = int.Parse(row[0]);
                     trackType.Name = row[1];
-                    records.Add(trackType);
+                    Records.Add(trackType);
                 }
                 return true;
             }
@@ -33,7 +33,7 @@ namespace AruruDB
         }
 
         public string ReturnNameFor(int id) {
-            return records.Where(o => o.ID == id).First().Name;
+            return Records.Where(o => o.ID == id).First().Name;
         }
     }
 }

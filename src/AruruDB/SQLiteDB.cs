@@ -3,6 +3,9 @@ using System.Data.SQLite;
 
 namespace AruruDB
 {
+    /// <summary>
+    /// SQLiteDBクラス
+    /// </summary>
     public class SQLiteDB
     {
         public string DBFileName { get; }
@@ -11,6 +14,10 @@ namespace AruruDB
             DBFileName = sqliteFileNm;
         }
 
+        /// <summary>
+        /// テーブルを作成する。
+        /// </summary>
+        /// <returns></returns>
         public bool CreateTable() {
             try {
                 SQLiteConnection.CreateFile(DBFileName);
@@ -21,7 +28,12 @@ namespace AruruDB
             }
         }
 
-        public List<string[]> Execute(string sql) {
+        /// <summary>
+        /// sqlを実行し、結果をIEnumerable<string[]>で返す。
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public IEnumerable<string[]> Execute(string sql) {
             var result = new List<string[]>();
             try {
                 var sqlConnectionSb = new SQLiteConnectionStringBuilder { DataSource = DBFileName };
