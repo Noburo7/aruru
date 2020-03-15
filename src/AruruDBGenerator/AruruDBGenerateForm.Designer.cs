@@ -1,4 +1,4 @@
-﻿namespace AruruDB
+﻿namespace AruruDBGenerator
 {
     partial class AruruDBGenerateForm
     {

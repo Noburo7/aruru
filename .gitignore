@@ -3,3 +3,9 @@
 ################################################################################
 
 /src/.vs/Aruru
+/src/Aruru/bin/Debug
+/src/Aruru/obj/Debug
+/src/AruruDB/bin/Debug/netstandard2.0
+/src/AruruDB/obj
+/src/AruruDBGenerator/bin/Debug
+/src/AruruDBGenerator/obj/Debug

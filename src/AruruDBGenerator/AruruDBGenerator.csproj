@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F361D587-7EF5-4108-954F-583E994F453B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AruruDB</RootNamespace>
-    <AssemblyName>AruruDB</AssemblyName>
+    <RootNamespace>AruruDBGenerator</RootNamespace>
+    <AssemblyName>AruruDBGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -61,7 +61,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Progress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQL.cs" />
     <EmbeddedResource Include="AruruDBGenerateForm.resx">
       <DependentUpon>AruruDBGenerateForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -73,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -104,6 +104,9 @@
     <Content Include="Sql\Record\05_T_Track_Condition_Record.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sql\Record\08_T_Course_Record.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sql\Table\01_T_Baken_Type.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -125,6 +128,15 @@
     <Content Include="Sql\Table\07_T_Baken.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sql\Table\08_T_Course.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AruruDB\AruruDB.csproj">
+      <Project>{33ff5bfe-99dd-4c68-8283-600e4f508fc0}</Project>
+      <Name>AruruDB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />

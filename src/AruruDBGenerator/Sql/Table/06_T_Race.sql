@@ -3,6 +3,7 @@ CREATE TABLE t_race(
   race_date TEXT,
   track INTEGER,
   race_number INTEGER,
+  race_name TEXT,
   track_type INTEGER
   distance INTEGER,
   race_class INTEGER,

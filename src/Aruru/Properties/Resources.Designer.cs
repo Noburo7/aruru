@@ -61,42 +61,6 @@ namespace Aruru.Properties {
         }
         
         /// <summary>
-        ///   ばけんせいせき に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Menu_Button_BakenRegist {
-            get {
-                return ResourceManager.GetString("Menu_Button_BakenRegist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   しゅうりょう に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Menu_Button_Close {
-            get {
-                return ResourceManager.GetString("Menu_Button_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   めにゅーをせんたくしてね に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Menu_Label_Direction {
-            get {
-                return ResourceManager.GetString("Menu_Label_Direction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   あるる に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Menu_WindowTitle {
-            get {
-                return ResourceManager.GetString("Menu_WindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.Drawing.Bitmap menuback {

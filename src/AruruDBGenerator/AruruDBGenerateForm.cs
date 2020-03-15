@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace AruruDB
+namespace AruruDBGenerator
 {
     public partial class AruruDBGenerateForm : Form
     {

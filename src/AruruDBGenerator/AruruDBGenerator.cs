@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using AruruDB;
 
 using System;
 
-namespace AruruDB
+namespace AruruDBGenerator
 {
     public class AruruDBGenerator
     {
@@ -12,6 +12,7 @@ namespace AruruDB
         private Progress _progress;
         private List<string> _TableFilePathList;
         private List<string> _RecordFilePathList;
+        private SQLiteDB _database;
 
         public AruruDBGenerator(string dbName, Progress progress) {
             _dbName = dbName;
@@ -29,6 +30,7 @@ namespace AruruDB
             _TableFilePathList.Add(@"Sql\Table\05_T_Track_Condition.sql");
             _TableFilePathList.Add(@"Sql\Table\06_T_Race.sql");
             _TableFilePathList.Add(@"Sql\Table\07_T_Baken.sql");
+            _TableFilePathList.Add(@"Sql\Table\08_T_Course.sql");
         }
 
         private void InitRecordFilePathList() {
@@ -38,26 +40,27 @@ namespace AruruDB
             _RecordFilePathList.Add(@"Sql\Record\03_T_Track_Type_Record.sql");
             _RecordFilePathList.Add(@"Sql\Record\04_T_Race_Class_Record.sql");
             _RecordFilePathList.Add(@"Sql\Record\05_T_Track_Condition_Record.sql");
+            _RecordFilePathList.Add(@"Sql\Record\08_T_Course_Record.sql");
         }
 
         public bool Run() {
+            _database = new SQLiteDB(_dbName);
             if (!CreateDB()) return false;
             if (!CreateTable()) return false;
             if (!InsertRecord()) return false;
-            _progress.AddProgress($"{_dbName} was generated successfully.");
+            _progress.AddProgress($"{ _dbName} was generated successfully.");
             return true;
         }
 
         private bool CreateDB() {
             try {
-                SQLiteConnection.CreateFile(_dbName);
+                _database.CreateTable();
                 _progress.AddProgress($"Created database file:{_dbName}");
                 return true;
             }
-            catch (Exception ex) {
-                _progress.AddProgress("DB file creation was failed.");
+            catch (Exception ex){
+                _progress.AddProgress($"[Error]Creation database {_dbName} was failed.");
                 _progress.AddProgress(ex.ToString());
-                Console.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -65,7 +68,8 @@ namespace AruruDB
         private bool CreateTable() {
             try {
                 foreach (var path in _TableFilePathList) {
-                    new SQL(Path.Combine(Directory.GetCurrentDirectory(), path), _dbName).Execute();
+                    var sql = File.ReadAllText(path);
+                    _database.Execute(sql);
                     _progress.AddProgress($"Created table by {path}.");
                 }
                 return true;
@@ -81,7 +85,8 @@ namespace AruruDB
         private bool InsertRecord() {
             try {
                 foreach (var path in _RecordFilePathList) {
-                    new SQL(Path.Combine(Directory.GetCurrentDirectory(), path), _dbName).Execute();
+                    var sql = File.ReadAllText(path);
+                    _database.Execute(sql);
                     _progress.AddProgress($"Inserted record by {path}.");
                 }
                 return true;
