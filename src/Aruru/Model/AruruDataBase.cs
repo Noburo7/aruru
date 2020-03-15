@@ -5,7 +5,7 @@ using AruruDB;
 
 namespace Aruru
 {
-    public class AruruDataBase
+    public class AruruDataBase : IAruruDB
     {
         public BakenTypeTable BakenTypeTable { get; private set; }
         public RaceClassTable RaceClassTable { get; private set; }
@@ -27,6 +27,9 @@ namespace Aruru
             BakenTable = new BakenTable(dbName);
         }
 
+        /// <summary>
+        /// すべてのテーブルをロードする。
+        /// </summary>
         public void LoadAruruDB() {
             BakenTypeTable.LoadTable();
             RaceClassTable.LoadTable();
@@ -38,6 +41,10 @@ namespace Aruru
             BakenTable.LoadTable();
         }
 
+        /// <summary>
+        /// DBに登録されている馬券情報リストを返す。
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<IBaken> GenerateBakenList()
         {
             var bakenList = new List<IBaken>();
