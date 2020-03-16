@@ -51,8 +51,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Feature\IAruruDB.cs" />
-    <Compile Include="Model\AruruDataBase.cs" />
+    <Compile Include="Model\AruruDB.cs" />
     <Compile Include="AruruForm\BakenMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>

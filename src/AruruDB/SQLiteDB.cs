@@ -6,8 +6,9 @@ namespace AruruDB
     /// <summary>
     /// SQLiteDBクラス
     /// </summary>
-    public class SQLiteDB
+    internal class SQLiteDB
     {
+        
         public string DBFileName { get; }
 
         public SQLiteDB(string sqliteFileNm) {

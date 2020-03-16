@@ -9,7 +9,7 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenMenuForm : Form
     {
-        private AruruDataBase _database = new AruruDataBase("AruruDB.sqlite");
+        private AruruDB _database = new AruruDB("AruruDB.sqlite");
 
         public BakenMenuForm() {
             InitializeComponent();
@@ -63,28 +63,29 @@ namespace Aruru.AruruForm
             BakenListView.Columns.Add("収支金額");
         }
 
-        private void SetBakenListViewData() {
-            _database.LoadAruruDB();
-            var bakenList = _database.GenerateBakenList();
-            foreach (var item in bakenList) {
-                string[] row = new string[14];
-                row[0] = item.Date.ToString("yyyy/MM/dd");
-                row[1] = item.TrackName;
-                row[2] = item.RaceNum.ToString();
-                row[3] = item.RaceName;
-                row[4] = item.Class;
-                row[5] = item.TrackType;
-                row[6] = item.Distance.ToString();
-                row[7] = item.TrackCondition;
-                row[8] = item.IsHandicap ? "○" : "";
-                row[9] = item.IsOnlyFemale ? "○" : "";
-                row[10] = item.IsOnlyYouth ? "○" : "";
-                row[11] = item.Bettings.Sum(o => o.Investment).ToString("#,0");
-                row[12] = item.Bettings.Sum(o => o.Payout).ToString("#,0");
-                row[13] = (int.Parse(row[12]) - int.Parse(row[11])).ToString("#,0"); 
-                BakenListView.Items.Add(new ListViewItem(row));
-                BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            }
+        private void SetBakenListViewData()
+        {
+            //_database.LoadAruruDB();
+            //var bakenList = _database.GenerateBakenList();
+            //foreach (var item in bakenList) {
+            //    string[] row = new string[14];
+            //    row[0] = item.Date.ToString("yyyy/MM/dd");
+            //    row[1] = item.TrackName;
+            //    row[2] = item.RaceNum.ToString();
+            //    row[3] = item.RaceName;
+            //    row[4] = item.Class;
+            //    row[5] = item.TrackType;
+            //    row[6] = item.Distance.ToString();
+            //    row[7] = item.TrackCondition;
+            //    row[8] = item.IsHandicap ? "○" : "";
+            //    row[9] = item.IsOnlyFemale ? "○" : "";
+            //    row[10] = item.IsOnlyYouth ? "○" : "";
+            //    row[11] = item.Bettings.Sum(o => o.Investment).ToString("#,0");
+            //    row[12] = item.Bettings.Sum(o => o.Payout).ToString("#,0");
+            //    row[13] = (int.Parse(row[12]) - int.Parse(row[11])).ToString("#,0"); 
+            //    BakenListView.Items.Add(new ListViewItem(row));
+            //    BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            //}
         }
     }
 }

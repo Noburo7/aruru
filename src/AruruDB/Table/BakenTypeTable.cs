@@ -3,32 +3,39 @@ using System.Collections.Generic;
 
 namespace AruruDB
 {
-    public class BakenTypeTable : Table
+    internal class BakenTypeTable
     {
-        public List<BakenTypeTableRecord> Records { get; private set; }
+        public string TableName { get; } = "t_baken_type";
+        public string DBName { get; }
 
-        public BakenTypeTable(string dbNm) {
-            TableName = "t_baken_type";
+        public BakenTypeTable(string dbNm)
+        {
             DBName = dbNm;
         }
 
-        public override bool LoadTable() {
-            Records = new List<BakenTypeTableRecord>();
+        public IEnumerable<IBakenType> LoadTable()
+        {
+            var records = new List<IBakenType>();
             var db = new SQLiteDB(DBName);
-            try {
-                var table = db.Execute(CreateSQLForLoad());
-                foreach (var row in table) {
-                    var bakenType = new BakenTypeTableRecord {
+            try
+            {
+                var table = db.Execute($"SELECT * FROM {TableName}");
+                foreach (var row in table)
+                {
+                    var bakenType = new BakenTypeTableRecord
+                    {
                         ID = int.Parse(row[0]),
                         Name = row[1]
                     };
-                    Records.Add(bakenType);
+                    records.Add(bakenType);
                 }
-                return true;
+
+                return records;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.ToString());
-                return false;
+                throw ex;
             }
         }
     }

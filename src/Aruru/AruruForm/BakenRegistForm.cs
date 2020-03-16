@@ -10,7 +10,7 @@ namespace Aruru.AruruForm
     public partial class BakenRegistForm : Form
     {
         public Baken Baken { get; set; }
-        private AruruDataBase _database;
+        //private AruruDB _database;
 
         public BakenRegistForm() {
             InitializeComponent();

@@ -1,39 +1,38 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace AruruDB
 {
-    public class RaceClassTable : Table
+    internal class RaceClassTable
     {
-        public List<RaceClassTableRecord> Records { get; private set; }
-
-        public RaceClassTable(string dbNm) {
-            TableName = "t_race_class";
+        public string TableName { get; } = "t_race_class";
+        public string DBName { get; }
+        public RaceClassTable(string dbNm)
+        {
             DBName = dbNm;
         }
 
-        public override bool LoadTable() {
-            Records = new List<RaceClassTableRecord>();
+        public IEnumerable<IRaceClass> LoadTable()
+        {
+            var records = new List<IRaceClass>();
             var db = new SQLiteDB(DBName);
-            try {
-                var table = db.Execute(CreateSQLForLoad());
-                foreach (var row in table) {
+            try
+            {
+                var table = db.Execute($"SELECT * FROM {TableName}");
+                foreach (var row in table)
+                {
                     var raceClass = new RaceClassTableRecord();
                     raceClass.ID = int.Parse(row[0]);
                     raceClass.Name = row[1];
-                    Records.Add(raceClass);
+                    records.Add(raceClass);
                 }
-                return true;
+                return records;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.ToString());
-                return false;
+                throw ex;
             }
-        }
-
-        public string ReturnNameFor(int id) {
-            return Records.Where(o => o.ID == id).First().Name;
         }
     }
 }

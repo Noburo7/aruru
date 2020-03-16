@@ -3,20 +3,23 @@ using System.Collections.Generic;
 
 namespace AruruDB
 {
-    public class RaceTable : Table
+    internal class RaceTable
     {
-        public List<RaceTableRecord> Records { get; private set; }
+        public string TableName { get; } = "t_race";
+        public string DBName { get; }
 
-        public RaceTable(string dbNm) {
-            TableName = "t_race";
+        public RaceTable(string dbNm)
+        {
             DBName = dbNm;
         }
 
-        public override bool LoadTable() {
-            Records = new List<RaceTableRecord>();
+        public IEnumerable<IRace> LoadTable()
+        {
+            var records = new List<IRace>();
             var db = new SQLiteDB(DBName);
-            try {
-                var table = db.Execute(CreateSQLForLoad());
+            try
+            {
+                var table = db.Execute($"SELECT * FROM {TableName}");
                 foreach (var row in table) {
                     var race = new RaceTableRecord();
                     race.ID                 = int.Parse(row[0]);
@@ -31,13 +34,14 @@ namespace AruruDB
                     race.IsHandicap         = int.Parse(row[9]);
                     race.IsOnlyFemale       = int.Parse(row[10]);
                     race.IsOnlyYouth        = int.Parse(row[11]);
-                    Records.Add(race);
+                    records.Add(race);
                 }
-                return true;
+                return records;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.ToString());
-                return false;
+                throw ex;
             }
         }
     }

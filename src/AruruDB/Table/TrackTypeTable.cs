@@ -4,36 +4,37 @@ using System.Collections.Generic;
 
 namespace AruruDB
 {
-    public class TrackTypeTable : Table
+    internal class TrackTypeTable
     {
-        public List<TrackTypeTableRecord> Records { get; private set; }
+        public string TableName { get; } = "t_track_type";
+        public string DBName { get; }
 
-        public TrackTypeTable(string dbNm) {
-            TableName = "t_track_type";
+        public TrackTypeTable(string dbNm)
+        {
             DBName = dbNm;
         }
 
-        public override bool LoadTable() {
-            Records = new List<TrackTypeTableRecord>();
+        public IEnumerable<ITrackType> LoadTable()
+        {
+            var records = new List<ITrackType>();
             var db = new SQLiteDB(DBName);
-            try {
-                var table = db.Execute(CreateSQLForLoad());
-                foreach (var row in table) {
+            try
+            {
+                var table = db.Execute($"SELECT * FROM {TableName}");
+                foreach (var row in table)
+                {
                     var trackType = new TrackTypeTableRecord();
                     trackType.ID = int.Parse(row[0]);
                     trackType.Name = row[1];
-                    Records.Add(trackType);
+                    records.Add(trackType);
                 }
-                return true;
+                return records;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.ToString());
-                return false;
+                throw ex;
             }
-        }
-
-        public string ReturnNameFor(int id) {
-            return Records.Where(o => o.ID == id).First().Name;
         }
     }
 }

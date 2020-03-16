@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using AruruDB;
+using AruruDB.DBCreator;
 
 using System;
 
@@ -12,7 +12,7 @@ namespace AruruDBGenerator
         private Progress _progress;
         private List<string> _TableFilePathList;
         private List<string> _RecordFilePathList;
-        private SQLiteDB _database;
+        private ICreator _dbCreator;
 
         public AruruDBGenerator(string dbName, Progress progress) {
             _dbName = dbName;
@@ -44,7 +44,7 @@ namespace AruruDBGenerator
         }
 
         public bool Run() {
-            _database = new SQLiteDB(_dbName);
+            _dbCreator = new Creator(_dbName);
             if (!CreateDB()) return false;
             if (!CreateTable()) return false;
             if (!InsertRecord()) return false;
@@ -54,7 +54,7 @@ namespace AruruDBGenerator
 
         private bool CreateDB() {
             try {
-                _database.CreateTable();
+                _dbCreator.CreateTable();
                 _progress.AddProgress($"Created database file:{_dbName}");
                 return true;
             }
@@ -69,7 +69,7 @@ namespace AruruDBGenerator
             try {
                 foreach (var path in _TableFilePathList) {
                     var sql = File.ReadAllText(path);
-                    _database.Execute(sql);
+                    _dbCreator.ExecuteSql(sql);
                     _progress.AddProgress($"Created table by {path}.");
                 }
                 return true;
@@ -86,7 +86,7 @@ namespace AruruDBGenerator
             try {
                 foreach (var path in _RecordFilePathList) {
                     var sql = File.ReadAllText(path);
-                    _database.Execute(sql);
+                    _dbCreator.ExecuteSql(sql);
                     _progress.AddProgress($"Inserted record by {path}.");
                 }
                 return true;
