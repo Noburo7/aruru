@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AruruDB
 {
     public class AruruDatabase : IAruruDatabase
     {
-        public string DBName { get; }
+        private string _DBName;
 
         /// <summary>
         /// コンストラクタ
@@ -14,24 +12,7 @@ namespace AruruDB
         /// <param name="dbName"></param>
         public AruruDatabase(string dbName)
         {
-            DBName = dbName;
-        }
-
-        /// <summary>
-        /// AruruDBテーブルを作成する。
-        /// </summary>
-        public void CreateTable()
-        {
-            new SQLiteDB(DBName).CreateTable();
-        }
-
-        /// <summary>
-        /// AruruDBに対しSQLコマンドを実行する。
-        /// </summary>
-        /// <param name="sql"></param>
-        public IEnumerable<string[]> ExecuteSql(string sql)
-        {
-            return new SQLiteDB(DBName).Execute(sql);
+            _DBName = dbName;
         }
 
         /// <summary>
@@ -40,7 +21,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<IBakenType> LoadBakenTypeTable()
         {
-            return new BakenTypeTable(DBName).LoadTable();
+            return new BakenTypeTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -49,7 +30,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<IRaceClass> LoadRaceClassTable()
         {
-            return new RaceClassTable(DBName).LoadTable();
+            return new RaceClassTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -58,7 +39,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<ITrackCondition> LoadTrackConditionTable()
         {
-            return new TrackConditionTable(DBName).LoadTable();
+            return new TrackConditionTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -67,7 +48,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<ITrack> LoadTrackTable()
         {
-            return new TrackTable(DBName).LoadTable();
+            return new TrackTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -76,7 +57,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<ITrackType> LoadTrackTypeTable()
         {
-            return new TrackTypeTable(DBName).LoadTable();
+            return new TrackTypeTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -85,7 +66,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<ICourse> LoadCourseTable()
         {
-            return new CourseTable(DBName).LoadTable();
+            return new CourseTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -94,7 +75,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<IRace> LoadRaceTable()
         {
-            return new RaceTable(DBName).LoadTable();
+            return new RaceTable(_DBName).LoadTable();
         }
 
         /// <summary>
@@ -103,7 +84,7 @@ namespace AruruDB
         /// <returns></returns>
         public IEnumerable<IBaken> LoadBakenTable()
         {
-            return new BakenTable(DBName).LoadTable();
+            return new BakenTable(_DBName).LoadTable();
         }
 
     }

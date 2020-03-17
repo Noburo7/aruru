@@ -12,7 +12,8 @@ namespace Aruru.AruruForm
         public Baken Baken { get; set; }
         //private AruruDB _database;
 
-        public BakenRegistForm() {
+        public BakenRegistForm()
+        {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             InitCourseList();

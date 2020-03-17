@@ -9,7 +9,7 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenMenuForm : Form
     {
-        private AruruDB _database = new AruruDB("AruruDB.sqlite");
+        private DBController _database = new DBController("AruruDB.sqlite");
 
         public BakenMenuForm() {
             InitializeComponent();
