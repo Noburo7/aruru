@@ -28,7 +28,7 @@
             this.RacePropertyGroupBox = new System.Windows.Forms.GroupBox();
             this.RaceNumberComboBox = new System.Windows.Forms.ComboBox();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.CourseNameComboBox = new System.Windows.Forms.ComboBox();
+            this.TrackNameComboBox = new System.Windows.Forms.ComboBox();
             this.RaceClassComboBox = new System.Windows.Forms.ComboBox();
             this.RaceNameTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -89,8 +89,8 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.DistanceComboBox = new System.Windows.Forms.ComboBox();
-            this.ConditionComboBox = new System.Windows.Forms.ComboBox();
-            this.CourseTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.TrackConditionComboBox = new System.Windows.Forms.ComboBox();
+            this.TrackTypeComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -117,7 +117,7 @@
             // 
             this.RacePropertyGroupBox.Controls.Add(this.RaceNumberComboBox);
             this.RacePropertyGroupBox.Controls.Add(this.DateTimePicker);
-            this.RacePropertyGroupBox.Controls.Add(this.CourseNameComboBox);
+            this.RacePropertyGroupBox.Controls.Add(this.TrackNameComboBox);
             this.RacePropertyGroupBox.Controls.Add(this.RaceClassComboBox);
             this.RacePropertyGroupBox.Controls.Add(this.RaceNameTextBox);
             this.RacePropertyGroupBox.Controls.Add(this.label7);
@@ -147,14 +147,14 @@
             this.DateTimePicker.Size = new System.Drawing.Size(132, 23);
             this.DateTimePicker.TabIndex = 36;
             // 
-            // CourseNameComboBox
+            // TrackNameComboBox
             // 
-            this.CourseNameComboBox.FormattingEnabled = true;
-            this.CourseNameComboBox.Location = new System.Drawing.Point(51, 47);
-            this.CourseNameComboBox.Name = "CourseNameComboBox";
-            this.CourseNameComboBox.Size = new System.Drawing.Size(55, 23);
-            this.CourseNameComboBox.TabIndex = 34;
-            this.CourseNameComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseNameComboBox_SelectIndexChanged);
+            this.TrackNameComboBox.FormattingEnabled = true;
+            this.TrackNameComboBox.Location = new System.Drawing.Point(51, 47);
+            this.TrackNameComboBox.Name = "TrackNameComboBox";
+            this.TrackNameComboBox.Size = new System.Drawing.Size(55, 23);
+            this.TrackNameComboBox.TabIndex = 34;
+            this.TrackNameComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseNameComboBox_SelectIndexChanged);
             // 
             // RaceClassComboBox
             // 
@@ -737,29 +737,29 @@
             this.DistanceComboBox.Size = new System.Drawing.Size(52, 23);
             this.DistanceComboBox.TabIndex = 34;
             // 
-            // ConditionComboBox
+            // TrackConditionComboBox
             // 
-            this.ConditionComboBox.FormattingEnabled = true;
-            this.ConditionComboBox.Location = new System.Drawing.Point(40, 47);
-            this.ConditionComboBox.Name = "ConditionComboBox";
-            this.ConditionComboBox.Size = new System.Drawing.Size(48, 23);
-            this.ConditionComboBox.TabIndex = 35;
+            this.TrackConditionComboBox.FormattingEnabled = true;
+            this.TrackConditionComboBox.Location = new System.Drawing.Point(40, 47);
+            this.TrackConditionComboBox.Name = "TrackConditionComboBox";
+            this.TrackConditionComboBox.Size = new System.Drawing.Size(48, 23);
+            this.TrackConditionComboBox.TabIndex = 35;
             // 
-            // CourseTypeComboBox
+            // TrackTypeComboBox
             // 
-            this.CourseTypeComboBox.FormattingEnabled = true;
-            this.CourseTypeComboBox.Location = new System.Drawing.Point(40, 18);
-            this.CourseTypeComboBox.Name = "CourseTypeComboBox";
-            this.CourseTypeComboBox.Size = new System.Drawing.Size(48, 23);
-            this.CourseTypeComboBox.TabIndex = 36;
-            this.CourseTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseTypeComboBox_SelectedIndexChanged);
+            this.TrackTypeComboBox.FormattingEnabled = true;
+            this.TrackTypeComboBox.Location = new System.Drawing.Point(40, 18);
+            this.TrackTypeComboBox.Name = "TrackTypeComboBox";
+            this.TrackTypeComboBox.Size = new System.Drawing.Size(48, 23);
+            this.TrackTypeComboBox.TabIndex = 36;
+            this.TrackTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseTypeComboBox_SelectedIndexChanged);
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label34);
             this.groupBox6.Controls.Add(this.label4);
-            this.groupBox6.Controls.Add(this.ConditionComboBox);
-            this.groupBox6.Controls.Add(this.CourseTypeComboBox);
+            this.groupBox6.Controls.Add(this.TrackConditionComboBox);
+            this.groupBox6.Controls.Add(this.TrackTypeComboBox);
             this.groupBox6.Controls.Add(this.DistanceComboBox);
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Location = new System.Drawing.Point(225, 12);
@@ -974,12 +974,12 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ComboBox RaceNumberComboBox;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
-        private System.Windows.Forms.ComboBox CourseNameComboBox;
+        private System.Windows.Forms.ComboBox TrackNameComboBox;
         private System.Windows.Forms.ComboBox RaceClassComboBox;
         private System.Windows.Forms.TextBox RaceNameTextBox;
         private System.Windows.Forms.ComboBox DistanceComboBox;
-        private System.Windows.Forms.ComboBox ConditionComboBox;
-        private System.Windows.Forms.ComboBox CourseTypeComboBox;
+        private System.Windows.Forms.ComboBox TrackConditionComboBox;
+        private System.Windows.Forms.ComboBox TrackTypeComboBox;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.GroupBox groupBox7;

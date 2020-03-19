@@ -33,5 +33,13 @@ namespace Aruru
         /// </summary>
         /// <returns></returns>
         IEnumerable<string> EnumerateTrackTypeNames();
+
+        /// <summary>
+        /// 距離リストを返す
+        /// </summary>
+        /// <param name="trackName">競馬場名</param>
+        /// <param name="trackType">トラックタイプ名</param>
+        /// <returns></returns>
+        IEnumerable<int> EnumerateDistance(string trackName, string trackType);
     }
 }

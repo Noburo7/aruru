@@ -61,15 +61,6 @@ namespace AruruDB
         }
 
         /// <summary>
-        /// コーステーブルをロードする。
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<ICourse> LoadCourseTable()
-        {
-            return new CourseTable(_DBName).LoadTable();
-        }
-
-        /// <summary>
         /// レーステーブルをロードする。
         /// </summary>
         /// <returns></returns>
@@ -87,5 +78,13 @@ namespace AruruDB
             return new BakenTable(_DBName).LoadTable();
         }
 
+        /// <summary>
+        /// 競馬場・トラックタイプに対する距離リストを返す。
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<int> LoadDistanceList(int trackID, int trackTypeID)
+        {
+            return new CourseTable(_DBName).LoadDistance(trackID, trackTypeID);
+        }
     }
 }

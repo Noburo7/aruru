@@ -9,16 +9,20 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenMenuForm : Form
     {
-        private DBController _database = new DBController("AruruDB.sqlite");
+        private IDBController _DBController = new DBController();
 
-        public BakenMenuForm() {
+        public BakenMenuForm()
+        {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
         }
 
-        private void NewRegistButton_Click(object sender, EventArgs e) {
-            using (var form = new BakenRegistForm()) {
-                if (form.ShowDialog() == DialogResult.OK) {
+        private void NewRegistButton_Click(object sender, EventArgs e)
+        {
+            using (var form = new BakenRegistForm(_DBController))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
                     UpdateBakenListView();
                 }
             }

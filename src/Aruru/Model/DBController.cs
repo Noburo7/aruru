@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AruruDB;
 
 namespace Aruru
@@ -8,7 +9,6 @@ namespace Aruru
         private static readonly string DBNAME = "AruruDB.sqlite";
         private AruruDatabase Database;
         private IEnumerable<IBakenType> BakenTypeTable;
-        private IEnumerable<ICourse> CourseTable;
         private IEnumerable<IRaceClass> ClassTable;
         private IEnumerable<ITrackCondition> TrackConditionTable;
         private IEnumerable<ITrack> TrackTable;
@@ -92,11 +92,23 @@ namespace Aruru
             }
             return list;
         }
-         
+
+        /// <summary>
+        /// 距離リストを返す
+        /// </summary>
+        /// <param name="trackName">競馬場名</param>
+        /// <param name="trackTypeName">トラックタイプ名</param>
+        /// <returns></returns>
+        public IEnumerable<int> EnumerateDistance(string trackName, string trackTypeName)
+        {
+            var trackID = TrackTable.Where(o => o.Name == trackName).First().ID;
+            var trackTypeID = TrackTypeTable.Where(o => o.Name == trackTypeName).First().ID;
+            return Database.LoadDistanceList(trackID, trackTypeID);
+        }
+
         private void LoadMasterTables()
         {
             BakenTypeTable = Database.LoadBakenTypeTable();
-            CourseTable = Database.LoadCourseTable();
             ClassTable = Database.LoadRaceClassTable();
             TrackConditionTable = Database.LoadTrackConditionTable();
             TrackTable = Database.LoadTrackTable();

@@ -13,29 +13,32 @@ namespace AruruDB
             DBName = dbNm;
         }
 
-        public IEnumerable<ICourse> LoadTable()
+        public IEnumerable<int> LoadDistance(int trackID, int trackTypeID)
         {
-            var records = new List<ICourse>();
+            var list = new List<int>();
             var db = new SQLiteDB(DBName);
             try
             {
-                var table = db.Execute($"SELECT * FROM {TableName}");
-                foreach (var row in table)
+                var result = db.Execute(GenerateSQLForDistanceLoading(trackID, trackTypeID));
+                foreach (var row in result)
                 {
-                    var course = new CourseTableRecord();
-                    course.ID = int.Parse(row[0]);
-                    course.TrackID = int.Parse(row[1]);
-                    course.TrackTypeID = int.Parse(row[2]);
-                    course.Distance = int.Parse(row[3]);
-                    records.Add(course);
+                    list.Add(int.Parse(row[0]));
                 }
-                return records;
+                return list;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
+        }
+
+        private string GenerateSQLForDistanceLoading(int trackID, int trackTypeID)
+        {
+            string sql = $"SELECT distance FROM {TableName}" + Environment.NewLine;
+            sql += $"WHERE track_id = {trackID} AND track_type_id = {trackTypeID}" + Environment.NewLine;
+            sql += "ORDER BY distance";
+            return sql;
         }
     }
 }

@@ -9,142 +9,156 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenRegistForm : Form
     {
+        private IDBController _DBController;
         public Baken Baken { get; set; }
-        //private AruruDB _database;
 
-        public BakenRegistForm()
+        public BakenRegistForm(IDBController controller)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
-            InitCourseList();
+            _DBController = controller;
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            InitTrackNameComboBox();
+            InitRaceNumberComboBox();
+            InitTrackConditionComboBox();
+            InitTrackTypeComboBox();
+            InitRaceClassComboBox();
+            InitBakenTypeComboBox();
             UpdateStripStatusLabel();
         }
 
-        private void InitCourseList() {
+        /// <summary>
+        /// TrackNameComboBoxの初期化
+        /// </summary>
+        private void InitTrackNameComboBox()
+        {
+            foreach (var name in _DBController.EnumerateTrackNames())
+            {
+                TrackNameComboBox.Items.Add(name);
+            }
         }
 
-        private void Form_Load(object sender, EventArgs e) {
-            InitCourseNameComboBox();
-            InitRaceNumberComboBox();
-            InitCourseConditionComboBox();
-            InitCourseTypeComboBox();
-            InitRaceClassComboBox();
-            InitBakenTypeComboBox();
-        }
-
-        private void InitCourseNameComboBox() {
-        }
-
-        private void InitRaceNumberComboBox() {
-            for (var i = 1; i <= 12; i++) {
+        /// <summary>
+        /// RaceNumberComboBoxの初期化
+        /// </summary>
+        private void InitRaceNumberComboBox()
+        {
+            for (var i = 1; i <= 12; i++)
+            {
                 RaceNumberComboBox.Items.Add(i);
             }
             RaceNumberComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void InitCourseConditionComboBox() {
-            ConditionComboBox.Items.Add("良");
-            ConditionComboBox.Items.Add("稍重");
-            ConditionComboBox.Items.Add("重");
-            ConditionComboBox.Items.Add("不良");
-        }
-
-        private void InitCourseTypeComboBox() {
-            CourseTypeComboBox.Items.Add("芝");
-            CourseTypeComboBox.Items.Add("ダ");
-        }
-
-        private void InitRaceClassComboBox() {
-            RaceClassComboBox.Items.Add("新馬");
-            RaceClassComboBox.Items.Add("未勝利");
-            RaceClassComboBox.Items.Add("1勝クラス");
-            RaceClassComboBox.Items.Add("2勝クラス");
-            RaceClassComboBox.Items.Add("3勝クラス");
-            RaceClassComboBox.Items.Add("オープン");
-            RaceClassComboBox.Items.Add("リステッド");
-            RaceClassComboBox.Items.Add("G3");
-            RaceClassComboBox.Items.Add("G2");
-            RaceClassComboBox.Items.Add("GI");
-        }
-
-        private void InitBakenTypeComboBox() {
-            var BakenTypeComboBoxList = new List<ComboBox>();
-            BakenTypeComboBoxList.Add(BakenTypeComboBox1);
-            BakenTypeComboBoxList.Add(BakenTypeComboBox2);
-            BakenTypeComboBoxList.Add(BakenTypeComboBox3);
-            BakenTypeComboBoxList.Add(BakenTypeComboBox4);
-            BakenTypeComboBoxList.Add(BakenTypeComboBox5);
-
-            foreach (var comboBox in BakenTypeComboBoxList) {
-                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                comboBox.Items.Add("単勝");
-                comboBox.Items.Add("複勝");
-                comboBox.Items.Add("枠連");
-                comboBox.Items.Add("馬連");
-                comboBox.Items.Add("馬単");
-                comboBox.Items.Add("ワイド");
-                comboBox.Items.Add("3連複");
-                comboBox.Items.Add("3連単");
+        /// <summary>
+        /// TrackConditionComboBoxの初期化
+        /// </summary>
+        private void InitTrackConditionComboBox()
+        {
+            foreach (var name in _DBController.EnumerateTrackConditionNames())
+            {
+                TrackConditionComboBox.Items.Add(name);
             }
         }
 
-        private void ClearButton1_Click(object sender, EventArgs e) {
+        /// <summary>
+        /// TrackTypeComboBoxの初期化
+        /// </summary>
+        private void InitTrackTypeComboBox()
+        {
+            foreach (var name in _DBController.EnumerateTrackTypeNames())
+            {
+                TrackTypeComboBox.Items.Add(name);
+            }
+        }
+
+        /// <summary>
+        /// RaceClassComboBoxの初期化
+        /// </summary>
+        private void InitRaceClassComboBox()
+        {
+            foreach (var name in _DBController.EnumerateClassNames())
+            {
+                RaceClassComboBox.Items.Add(name);
+            }
+        }
+
+        /// <summary>
+        /// BakenTypeComboBoxの初期化
+        /// </summary>
+        private void InitBakenTypeComboBox()
+        {
+            foreach (var name in _DBController.EnumerateBakenTypeNames())
+            {
+                BakenTypeComboBox1.Items.Add(name);
+                BakenTypeComboBox2.Items.Add(name);
+                BakenTypeComboBox3.Items.Add(name);
+                BakenTypeComboBox4.Items.Add(name);
+                BakenTypeComboBox5.Items.Add(name);
+            }
+        }
+
+        private void ClearButton1_Click(object sender, EventArgs e)
+        {
             BakenTypeComboBox1.SelectedIndex = -1;
             BetTextBox1.Clear();
             PayoutTextBox1.Clear();
         }
 
-        private void ClearButton2_Click(object sender, EventArgs e) {
+        private void ClearButton2_Click(object sender, EventArgs e)
+        {
             BakenTypeComboBox2.SelectedIndex = -1;
             BetTextBox2.Clear();
             PayoutTextBox2.Clear();
         }
 
-        private void ClearButton3_Click(object sender, EventArgs e) {
+        private void ClearButton3_Click(object sender, EventArgs e)
+        {
             BakenTypeComboBox3.SelectedIndex = -1;
             BetTextBox3.Clear();
             PayoutTextBox3.Clear();
         }
 
-        private void ClearButton4_Click(object sender, EventArgs e) {
+        private void ClearButton4_Click(object sender, EventArgs e)
+        {
             BakenTypeComboBox4.SelectedIndex = -1;
             BetTextBox4.Clear();
             PayoutTextBox4.Clear();
         }
 
-        private void ClearButton5_Click(object sender, EventArgs e) {
+        private void ClearButton5_Click(object sender, EventArgs e)
+        {
             BakenTypeComboBox5.SelectedIndex = -1;
             BetTextBox5.Clear();
             PayoutTextBox5.Clear();
         }
 
-        private void CourseNameComboBox_SelectIndexChanged(object sender, EventArgs e) {
-            SetDistanceComboBox();
-        }
-        private void CourseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e) {
+        private void CourseNameComboBox_SelectIndexChanged(object sender, EventArgs e)
+        {
             SetDistanceComboBox();
         }
 
-        private void SetDistanceComboBox() {
+        private void CourseTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetDistanceComboBox();
+        }
+
+        private void SetDistanceComboBox()
+        {
             DistanceComboBox.Items.Clear();
-            /*
-            foreach (var course in _CourseList) {
-                if (course.Name != CourseNameComboBox.Text) continue;
-                if (CourseTypeComboBox.Text == "芝") {
-                    foreach (var distance in course.GrassCourse()) {
-                        DistanceComboBox.Items.Add(distance);
-                    }
-                }
-                else if (CourseTypeComboBox.Text == "ダ") {
-                    foreach (var distance in course.DirtCourse()) {
-                        DistanceComboBox.Items.Add(distance);
-                    }
-                }
+            if (string.IsNullOrEmpty(TrackNameComboBox.Text) || string.IsNullOrEmpty(TrackTypeComboBox.Text)) return;
+            var distanceList = _DBController.EnumerateDistance(TrackNameComboBox.Text, TrackTypeComboBox.Text);
+            foreach (var distance in distanceList)
+            {
+                DistanceComboBox.Items.Add(distance);
             }
-            */
         }
 
-        private void MoneyTextBoxChanged(object sender, EventArgs e) {
+        private void MoneyTextBoxChanged(object sender, EventArgs e)
+        {
             UpdateStripStatusLabel();
         }
 
