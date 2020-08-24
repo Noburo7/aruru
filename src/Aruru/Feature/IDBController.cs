@@ -1,38 +1,34 @@
 ﻿using System.Collections.Generic;
+using AruruDB;
 
 namespace Aruru
 {
     public interface IDBController
     {
         /// <summary>
-        /// 馬券種別名を列挙する。
+        /// 馬券タイプテーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<string> EnumerateBakenTypeNames();
+        IEnumerable<IBakenType> BakenTypeTable { get; }
 
         /// <summary>
-        /// クラス名を列挙する。
+        /// レースクラステーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<string> EnumerateClassNames();
+        IEnumerable<IRaceClass> ClassTable { get; }
 
         /// <summary>
-        /// 馬場状態名を列挙する。
+        /// 馬場状態テーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<string> EnumerateTrackConditionNames();
+        IEnumerable<ITrackCondition> TrackConditionTable { get; }
 
         /// <summary>
-        /// 競馬場名を列挙する。
+        /// 競馬場テーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<string> EnumerateTrackNames();
+        IEnumerable<ITrack> TrackTable { get; }
 
         /// <summary>
-        /// トラックタイプ名を列挙する。
+        /// トラックタイプテーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<string> EnumerateTrackTypeNames();
+        IEnumerable<ITrackType> TrackTypeTable { get; }
 
         /// <summary>
         /// 距離リストを返す

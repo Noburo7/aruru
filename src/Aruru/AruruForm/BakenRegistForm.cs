@@ -10,13 +10,14 @@ namespace Aruru.AruruForm
     public partial class BakenRegistForm : Form
     {
         private IDBController _DBController;
-        public Baken Baken { get; set; }
+        public Baken Baken { get; private set; }
 
-        public BakenRegistForm(IDBController controller)
+        public BakenRegistForm(IDBController controller, Baken bukenInfo = null)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             _DBController = controller;
+            Baken = bukenInfo;
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -35,10 +36,11 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackNameComboBox()
         {
-            foreach (var name in _DBController.EnumerateTrackNames())
+            foreach (var record in _DBController.TrackTable)
             {
-                TrackNameComboBox.Items.Add(name);
+                TrackNameComboBox.Items.Add(record.Name);
             }
+            TrackNameComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
@@ -58,10 +60,11 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackConditionComboBox()
         {
-            foreach (var name in _DBController.EnumerateTrackConditionNames())
+            foreach (var record in _DBController.TrackConditionTable)
             {
-                TrackConditionComboBox.Items.Add(name);
+                TrackConditionComboBox.Items.Add(record.Name);
             }
+            TrackConditionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
@@ -69,10 +72,11 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackTypeComboBox()
         {
-            foreach (var name in _DBController.EnumerateTrackTypeNames())
+            foreach (var record in _DBController.TrackTypeTable)
             {
-                TrackTypeComboBox.Items.Add(name);
+                TrackTypeComboBox.Items.Add(record.Name);
             }
+            TrackTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
@@ -80,10 +84,11 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitRaceClassComboBox()
         {
-            foreach (var name in _DBController.EnumerateClassNames())
+            foreach (var record in _DBController.ClassTable)
             {
-                RaceClassComboBox.Items.Add(name);
+                RaceClassComboBox.Items.Add(record.Name);
             }
+            RaceClassComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
@@ -91,14 +96,20 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitBakenTypeComboBox()
         {
-            foreach (var name in _DBController.EnumerateBakenTypeNames())
+            foreach (var record in _DBController.BakenTypeTable)
             {
-                BakenTypeComboBox1.Items.Add(name);
-                BakenTypeComboBox2.Items.Add(name);
-                BakenTypeComboBox3.Items.Add(name);
-                BakenTypeComboBox4.Items.Add(name);
-                BakenTypeComboBox5.Items.Add(name);
+                BakenTypeComboBox1.Items.Add(record.Name);
+                BakenTypeComboBox2.Items.Add(record.Name);
+                BakenTypeComboBox3.Items.Add(record.Name);
+                BakenTypeComboBox4.Items.Add(record.Name);
+                BakenTypeComboBox5.Items.Add(record.Name);
             }
+
+            BakenTypeComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            BakenTypeComboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            BakenTypeComboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+            BakenTypeComboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
+            BakenTypeComboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ClearButton1_Click(object sender, EventArgs e)
@@ -155,6 +166,7 @@ namespace Aruru.AruruForm
             {
                 DistanceComboBox.Items.Add(distance);
             }
+            DistanceComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void MoneyTextBoxChanged(object sender, EventArgs e)
@@ -162,13 +174,15 @@ namespace Aruru.AruruForm
             UpdateStripStatusLabel();
         }
 
-        private void UpdateStripStatusLabel() {
+        private void UpdateStripStatusLabel()
+        {
             var betSum = CalculateTotalBet();
             var payoutSum = CalculateTotalPayout();
             StripStatusLabel.Text = $"購入金額：{betSum}円    払戻金額：{payoutSum}円    レース収支：{payoutSum - betSum}円";
         }
 
-        private int CalculateTotalBet() {
+        private int CalculateTotalBet()
+        {
             int.TryParse(BetTextBox1.Text, out var bet1);
             int.TryParse(BetTextBox2.Text, out var bet2);
             int.TryParse(BetTextBox3.Text, out var bet3);
@@ -177,7 +191,8 @@ namespace Aruru.AruruForm
             return (bet1 + bet2 + bet3 + bet4 + bet5) * 100;
         }
 
-        private int CalculateTotalPayout() {
+        private int CalculateTotalPayout()
+        {
             int.TryParse(PayoutTextBox1.Text, out var payout1);
             int.TryParse(PayoutTextBox2.Text, out var payout2);
             int.TryParse(PayoutTextBox3.Text, out var payout3);
@@ -186,33 +201,56 @@ namespace Aruru.AruruForm
             return payout1 + payout2 + payout3 + payout4 + payout5;
         }
 
-        private void RegistButton_Click(object sender, EventArgs e) {
+        private void RegistButton_Click(object sender, EventArgs e)
+        {            
+            if (!ValidateUserInput(out var errMsg))
+            {
+                MessageBox.Show(errMsg, "馬券登録", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Close();
         }
 
-        private void SetBakenResult() {
-            /*
-            Baken.Results.Clear();
-            if (BakenTypeComboBox1.SelectedIndex != -1) {
-                Baken.Results.Add(new BakenResult(BakenTypeComboBox1.Text, int.Parse(BetTextBox1.Text) * 100, int.Parse(PayoutTextBox1.Text)));
+        private bool ValidateUserInput(out string errMsg)
+        {
+            //競馬場名
+            if (TrackNameComboBox.SelectedIndex == -1)
+            {
+                errMsg = "競馬場名を選択してください。";
+                return false;
             }
 
-            if (BakenTypeComboBox2.SelectedIndex != -1) {
-                Baken.Results.Add(new BakenResult(BakenTypeComboBox2.Text, int.Parse(BetTextBox2.Text) * 100, int.Parse(PayoutTextBox2.Text)));
+            //レース番号
+            if (RaceNumberComboBox.SelectedIndex == -1)
+            {
+                errMsg = "レース番号を選択してください。";
+                return false;
             }
 
-            if (BakenTypeComboBox3.SelectedIndex != -1) {
-                Baken.Results.Add(new BakenResult(BakenTypeComboBox3.Text, int.Parse(BetTextBox3.Text) * 100, int.Parse(PayoutTextBox3.Text)));
+            //クラス
+            if (RaceClassComboBox.SelectedIndex == -1)
+            {
+                errMsg = "レースクラスを選択してください。";
+                return false;
             }
 
-            if (BakenTypeComboBox4.SelectedIndex != -1) {
-                Baken.Results.Add(new BakenResult(BakenTypeComboBox4.Text, int.Parse(BetTextBox4.Text) * 100, int.Parse(PayoutTextBox4.Text)));
+            //コースタイプ
+            if (TrackTypeComboBox.SelectedIndex == -1)
+            {
+                errMsg = "コースタイプ(芝/ダ)を選択してください。";
+                return false;
             }
 
-            if (BakenTypeComboBox5.SelectedIndex != -1) {
-                Baken.Results.Add(new BakenResult(BakenTypeComboBox5.Text, int.Parse(BetTextBox5.Text) * 100, int.Parse(PayoutTextBox5.Text)));
+            //距離
+            if (DistanceComboBox.SelectedItem.ToString() == null)
+            {
+                errMsg = "距離を選択してください。";
+                return false;
             }
-            */
+
+            errMsg = null;
+            return true;
         }
     }
 }
