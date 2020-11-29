@@ -85,11 +85,26 @@ namespace AruruDB
             }
         }
 
+        /// <summary>
+        /// コースの距離リストを返す
+        /// </summary>
+        /// <param name="trackNm">競馬場名</param>
+        /// <param name="trackTypeNm">馬場タイプ</param>
+        /// <returns>距離リスト</returns>
         public IEnumerable<int> DistanceList(string trackNm, string trackTypeNm)
         {
             var trackID = TrackTable.Records.Where(o => o.Name == trackNm).First().ID;
             var trackTypeID = TrackTypeTable.Records.Where(o => o.Name == trackTypeNm).First().ID;
             return CourseTable.DistanceList(trackID, trackTypeID);
+        }
+
+        /// <summary>
+        /// レース・馬券を登録する
+        /// </summary>
+        /// <param name="baken"></param>
+        public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> baken)
+        {
+            //TODO:Implement
         }
 
         /// <summary>

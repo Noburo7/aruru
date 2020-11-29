@@ -7,7 +7,7 @@ namespace AruruDB.Table
 {
     internal class RaceTable : IRaceTable
     {
-        public IEnumerable<IRace> Records { get; private set; }
+        public IEnumerable<IRaceRecord> Records { get; private set; }
         public ISQLiteDB SQLiteDB { get; }
 
         private static readonly string _raceTableNm = "t_race";
@@ -31,13 +31,13 @@ namespace AruruDB.Table
 
         public void ReadTable()
         {
-            var records = new List<IRace>();
+            var records = new List<IRaceRecord>();
             try
             {
                 var table = SQLiteDB.ExecuteSql($"SELECT * FROM {_raceTableNm}");
                 foreach (var row in table)
                 {
-                    var race = new Race();
+                    var race = new RaceRecord();
                     race.ID = int.Parse(row[0]);
                     race.Date = row[1];
                     race.TrackID = int.Parse(row[2]);

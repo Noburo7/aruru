@@ -38,7 +38,7 @@ namespace AruruDB.Table
                 var table = SQLiteDB.ExecuteSql($"SELECT * FROM {_trackConditionTableNm}");
                 foreach (var row in table)
                 {
-                    var condition = new TrackCondition();
+                    var condition = new TrackConditionRecord();
                     condition.ID = int.Parse(row[0]);
                     condition.Name = row[1];
                     records.Add(condition);

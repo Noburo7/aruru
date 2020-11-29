@@ -6,6 +6,6 @@ namespace AruruDB.Table
 {
     public interface IRaceTable : ITable
     {
-        IEnumerable<IRace> Records { get; }
+        IEnumerable<IRaceRecord> Records { get; }
     }
 }

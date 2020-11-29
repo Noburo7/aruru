@@ -3,7 +3,7 @@
     /// <summary>
     /// レース属性
     /// </summary>
-    public interface IRace
+    public interface IRaceRecord
     {
         /// <summary>
         /// レースID

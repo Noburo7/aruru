@@ -1,18 +1,18 @@
 ﻿namespace AruruDB.Table.Record
 {
     /// <summary>
-    /// トラックタイプ
+    /// 馬券種類
     /// </summary>
-    public interface ITrackType
+    public interface IBakenTypeRecord
     {
         /// <summary>
-        /// トラックタイプID
+        /// 馬券種ID
         /// </summary>
-        int ID { get; }
+        int ID { get;}
 
         /// <summary>
-        /// 芝・ダ
+        /// 馬券種別名
         /// </summary>
-        string Name { get; }
+        string Name { get;}
     }
 }

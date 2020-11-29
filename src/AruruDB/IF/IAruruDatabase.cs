@@ -48,6 +48,18 @@ namespace AruruDB
         /// </summary>
         ITrackTypeTable TrackTypeTable { get; }
 
+        /// <summary>
+        /// コースの距離リストを返す
+        /// </summary>
+        /// <param name="trackNm">競馬場名</param>
+        /// <param name="trackTypeNm">馬場タイプ</param>
+        /// <returns>距離リスト</returns>
         IEnumerable<int> DistanceList(string trackNm, string trackTypeNm);
+
+        /// <summary>
+        /// レース・馬券を登録する
+        /// </summary>
+        /// <param name="baken"></param>
+        void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> baken);
     }
 }

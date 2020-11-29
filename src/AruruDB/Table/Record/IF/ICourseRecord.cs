@@ -3,7 +3,7 @@
     /// <summary>
     /// コース
     /// </summary>
-    public interface ICourse
+    public interface ICourseRecord
     {
         /// <summary>
         /// コースID

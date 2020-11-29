@@ -5,6 +5,6 @@ namespace AruruDB.Table
 {
     public interface ITrackTypeTable : ITable
     {
-        IEnumerable<ITrackType> Records { get; }
+        IEnumerable<ITrackTypeRecord> Records { get; }
     }
 }

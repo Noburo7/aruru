@@ -5,6 +5,6 @@ namespace AruruDB.Table
 {
     public interface IBakenTable : ITable
     {
-        IEnumerable<IBaken> Records { get; }
+        IEnumerable<IBakenRecord> Records { get; }
     }
 }

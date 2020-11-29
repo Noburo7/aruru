@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Linq;
 using AruruDB;
 
 namespace Aruru.AruruForm
@@ -28,12 +29,14 @@ namespace Aruru.AruruForm
             }
         }
 
-        private void Form_Load(object sender, EventArgs e) {
+        private void Form_Load(object sender, EventArgs e)
+        {
             InitBakenListView();
             UpdateBakenListView();
         }
 
-        private void UpdateBakenListView() {
+        private void UpdateBakenListView()
+        {
             BakenListView.BeginUpdate();
             BakenListView.Clear();
             SetBakenListViewColumns();
@@ -41,7 +44,8 @@ namespace Aruru.AruruForm
             BakenListView.EndUpdate();
         }
 
-        private void InitBakenListView() {
+        private void InitBakenListView()
+        {
             BakenListView.FullRowSelect = true;
             BakenListView.MultiSelect = false;
             BakenListView.GridLines = true;
@@ -50,7 +54,8 @@ namespace Aruru.AruruForm
             BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void SetBakenListViewColumns() {
+        private void SetBakenListViewColumns()
+        {
             BakenListView.Columns.Add("日付");
             BakenListView.Columns.Add("会場");
             BakenListView.Columns.Add("R");
@@ -69,27 +74,26 @@ namespace Aruru.AruruForm
 
         private void SetBakenListViewData()
         {
-            //_database.LoadAruruDB();
-            //var bakenList = _database.GenerateBakenList();
-            //foreach (var item in bakenList) {
-            //    string[] row = new string[14];
-            //    row[0] = item.Date.ToString("yyyy/MM/dd");
-            //    row[1] = item.TrackName;
-            //    row[2] = item.RaceNum.ToString();
-            //    row[3] = item.RaceName;
-            //    row[4] = item.Class;
-            //    row[5] = item.TrackType;
-            //    row[6] = item.Distance.ToString();
-            //    row[7] = item.TrackCondition;
-            //    row[8] = item.IsHandicap ? "○" : "";
-            //    row[9] = item.IsOnlyFemale ? "○" : "";
-            //    row[10] = item.IsOnlyYouth ? "○" : "";
-            //    row[11] = item.Bettings.Sum(o => o.Investment).ToString("#,0");
-            //    row[12] = item.Bettings.Sum(o => o.Payout).ToString("#,0");
-            //    row[13] = (int.Parse(row[12]) - int.Parse(row[11])).ToString("#,0"); 
-            //    BakenListView.Items.Add(new ListViewItem(row));
-            //    BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            //}
+            foreach (var record in _aruruDB.RaceTable.Records)
+            {
+                string[] row = new string[14];
+                row[0] = record.Date;
+                row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == record.TrackID).First().Name;
+                row[2] = record.RaceNumber.ToString();
+                row[3] = record.RaceName;
+                row[4] = _aruruDB.RaceClassTable.Records.Where(o => o.ID == record.RaceClassID).First().Name;
+                row[5] = _aruruDB.TrackTypeTable.Records.Where(o => o.ID == record.TrackTypeID).First().Name;
+                row[6] = record.Distance.ToString();
+                row[7] = _aruruDB.TrackConditionTable.Records.Where(o => o.ID == record.TrackConditionID).First().Name;
+                row[8] = record.IsHandicap == 1 ? "○" : "";
+                row[9] = record.IsOnlyFemale == 1 ? "○" : "";
+                row[10] = record.IsOnlyYouth == 1? "○" : "";
+                row[11] = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Investment).ToString("#,0");
+                row[12] = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Payout).ToString("#,0");
+                row[13] = (int.Parse(row[12]) - int.Parse(row[11])).ToString("#,0");
+                BakenListView.Items.Add(new ListViewItem(row));
+                BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
         }
     }
 }

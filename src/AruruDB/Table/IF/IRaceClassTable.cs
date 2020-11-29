@@ -5,6 +5,6 @@ namespace AruruDB.Table
 {
     public interface IRaceClassTable : ITable
     {
-        IEnumerable<IRaceClass> Records { get; }
+        IEnumerable<IClassRecord> Records { get; }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// 競馬場
     /// </summary>
-    public interface ITrack
+    public interface ITrackRecord
     {
         /// <summary>
         /// 競馬場ID

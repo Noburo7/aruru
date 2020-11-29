@@ -3,7 +3,7 @@
     /// <summary>
     /// 馬券収支
     /// </summary>
-    public interface IBaken
+    public interface IBakenRecord
     {
         /// <summary>
         /// 馬券ID

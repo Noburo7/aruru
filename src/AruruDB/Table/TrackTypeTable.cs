@@ -7,7 +7,7 @@ namespace AruruDB.Table
 {
     internal class TrackTypeTable : ITrackTypeTable
     {
-        public IEnumerable<ITrackType> Records { get; private set; }
+        public IEnumerable<ITrackTypeRecord> Records { get; private set; }
         public ISQLiteDB SQLiteDB { get; }
 
         private static readonly string _trackTypeTableNm = "t_track_type";
@@ -32,13 +32,13 @@ namespace AruruDB.Table
 
         public void ReadTable()
         {
-            var records = new List<ITrackType>();
+            var records = new List<ITrackTypeRecord>();
             try
             {
                 var table = SQLiteDB.ExecuteSql($"SELECT * FROM {_trackTypeTableNm}");
                 foreach (var row in table)
                 {
-                    var trackType = new TrackType();
+                    var trackType = new TrackTypeRecord();
                     trackType.ID = int.Parse(row[0]);
                     trackType.Name = row[1];
                     records.Add(trackType);

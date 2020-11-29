@@ -7,7 +7,7 @@ namespace AruruDB.Table
 {
     public class CourseTable : ICourseTable
     {
-        public IEnumerable<ICourse> Records { get; private set; }
+        public IEnumerable<ICourseRecord> Records { get; private set; }
         public ISQLiteDB SQLiteDB { get; }
 
         private static readonly string _courseTableNm = "t_course";
@@ -32,13 +32,13 @@ namespace AruruDB.Table
 
         public void ReadTable()
         {
-            var records = new List<ICourse>();
+            var records = new List<ICourseRecord>();
             try
             {
                 var table = SQLiteDB.ExecuteSql($"SELECT * FROM {_courseTableNm}");
                 foreach (var row in table)
                 {
-                    var courseTableRecord = new Course();
+                    var courseTableRecord = new CourseRecord();
                     courseTableRecord.ID = int.Parse(row[0]);
                     courseTableRecord.TrackID = int.Parse(row[1]);
                     courseTableRecord.TrackTypeID = int.Parse(row[2]);

@@ -10,7 +10,7 @@ namespace AruruDB.Table
         private static readonly string _bakenTypeTableNm = "t_baken_type";
 
         public ISQLiteDB SQLiteDB { get; }
-        public IEnumerable<IBakenType> Records { get; private set; }
+        public IEnumerable<IBakenTypeRecord> Records { get; private set; }
 
         public BakenTypeTable(SQLiteDB sqliteDB)
         {
@@ -32,13 +32,13 @@ namespace AruruDB.Table
 
         public void ReadTable()
         {
-            var records = new List<IBakenType>();
+            var records = new List<IBakenTypeRecord>();
             try
             {
                 var table = SQLiteDB.ExecuteSql($"SELECT * FROM {_bakenTypeTableNm}");
                 foreach (var row in table)
                 {
-                    var bakenType = new BakenType
+                    var bakenType = new BakenTypeRecord
                     {
                         ID = int.Parse(row[0]),
                         Name = row[1]
