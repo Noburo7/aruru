@@ -1,63 +1,62 @@
-﻿namespace AruruDB
+﻿using AruruDB;
+
+namespace Aruru
 {
-    /// <summary>
-    /// レース情報インターフェイス
-    /// </summary>
-    public interface IRace
+    public class Race : IRace
     {
         /// <summary>
         /// 日付(hhhhyydd)
         /// </summary>
-        string Date { get; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 競馬場名
         /// </summary>
-        string TrackNm { get; }
+        public string TrackNm { get; set; }
 
         /// <summary>
         /// レース番号
         /// </summary>
-        int RaceNum { get; }
+        public int RaceNum { get; set; }
 
         /// <summary>
         /// レース名
         /// </summary>
-        string RaceNm { get; }
+        public string RaceNm { get; set; }
 
         /// <summary>
         /// トラックタイプ名(芝/ダ)
         /// </summary>
-        string TrackTypeNm { get; }
+        public string TrackTypeNm { get; set; }
 
         /// <summary>
         /// 距離
         /// </summary>
-        int Distance { get; }
+        public int Distance { get; set; }
 
         /// <summary>
         /// クラス名
         /// </summary>
-        string RaceClassNm { get; }
+        public string RaceClassNm { get; set; }
 
         /// <summary>
         /// 馬場状態名
         /// </summary>
-        string TrackConditionNm { get; }
+        public string TrackConditionNm { get; set; }
 
         /// <summary>
         /// ハンディキャップ競争フラグ
         /// </summary>
-        bool IsHandicap { get; }
+        public bool IsHandicap { get; set; }
 
         /// <summary>
         /// 牝馬限定競争フラグ
         /// </summary>
-        bool IsOnlyFemale { get; }
+        public bool IsOnlyFemale { get; set; }
 
         /// <summary>
         /// ２・３歳戦競争フラグ
         /// </summary>
-        bool IsOnlyYouth { get; }
+        public bool IsOnlyYouth { get; set; }
     }
 }

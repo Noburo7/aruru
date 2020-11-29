@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using AruruDB;
 
@@ -209,7 +210,19 @@ namespace Aruru.AruruForm
                 return;
             }
 
-            Close();
+            //レース情報と馬券をDBに登録
+            try
+            {
+                _DB.InsertBakenResult(GenerateRaceInfo(), GenerateBakenList());
+                MessageBox.Show("登録完了！", "馬券登録", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "馬券登録", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
         }
 
         private bool ValidateUserInput(out string errMsg)
@@ -251,6 +264,73 @@ namespace Aruru.AruruForm
 
             errMsg = null;
             return true;
+        }
+
+        private IRace GenerateRaceInfo()
+        {
+            var raceInfo = new Race();
+            raceInfo.Date = DateTimePicker.Value.ToString("yyyymmdd");
+            raceInfo.TrackNm = TrackNameComboBox.Text;
+            raceInfo.RaceNum = int.Parse(RaceNumberComboBox.Text);
+            raceInfo.RaceNm = RaceNameTextBox.Text;
+            raceInfo.TrackTypeNm = TrackTypeComboBox.Text;
+            raceInfo.Distance = int.Parse(DistanceComboBox.Text);
+            raceInfo.RaceClassNm = RaceClassComboBox.Text;
+            raceInfo.TrackConditionNm = TrackConditionComboBox.Text;
+            raceInfo.IsHandicap = HandicapCheckBox.Checked;
+            raceInfo.IsOnlyFemale = FemaleCheckBox.Checked;
+            raceInfo.IsOnlyYouth = AgeCheckBox.Checked;
+            return raceInfo;
+        }
+
+        private List<IBaken> GenerateBakenList()
+        {
+            var bakenList = new List<IBaken>();
+            if (BakenTypeComboBox1.SelectedIndex != -1)
+            {
+                var baken = new Baken();
+                baken.BakenTypeNm = BakenTypeComboBox1.Text;
+                baken.Investment = int.Parse(BetTextBox1.Text);
+                baken.Payout = int.Parse(PayoutTextBox1.Text);
+                bakenList.Add(baken);
+            }
+
+            if (BakenTypeComboBox2.SelectedIndex != -1)
+            {
+                var baken = new Baken();
+                baken.BakenTypeNm = BakenTypeComboBox2.Text;
+                baken.Investment = int.Parse(BetTextBox2.Text);
+                baken.Payout = int.Parse(PayoutTextBox2.Text);
+                bakenList.Add(baken);
+            }
+
+            if (BakenTypeComboBox3.SelectedIndex != -1)
+            {
+                var baken = new Baken();
+                baken.BakenTypeNm = BakenTypeComboBox3.Text;
+                baken.Investment = int.Parse(BetTextBox3.Text);
+                baken.Payout = int.Parse(PayoutTextBox3.Text);
+                bakenList.Add(baken);
+            }
+
+            if (BakenTypeComboBox4.SelectedIndex != -1)
+            {
+                var baken = new Baken();
+                baken.BakenTypeNm = BakenTypeComboBox4.Text;
+                baken.Investment = int.Parse(BetTextBox4.Text);
+                baken.Payout = int.Parse(PayoutTextBox4.Text);
+                bakenList.Add(baken);
+            }
+
+            if (BakenTypeComboBox5.SelectedIndex != -1)
+            {
+                var baken = new Baken();
+                baken.BakenTypeNm = BakenTypeComboBox5.Text;
+                baken.Investment = int.Parse(BetTextBox5.Text);
+                baken.Payout = int.Parse(PayoutTextBox5.Text);
+                bakenList.Add(baken);
+            }
+            return bakenList;
         }
     }
 }

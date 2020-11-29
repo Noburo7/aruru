@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AruruDB;
 
 namespace Aruru
 {
@@ -9,68 +8,18 @@ namespace Aruru
     public class Baken : IBaken
     {
         /// <summary>
-        /// 購入レースID(DB用)
+        /// 馬券種別
         /// </summary>
-        public int RaceID { get; set; }
+        public string BakenTypeNm { get; set; }
 
         /// <summary>
-        /// レース日
+        /// 投資金額
         /// </summary>
-        public DateTime Date { get; set; }
+        public int Investment { get; set; }
 
         /// <summary>
-        /// 競馬場名
+        /// 購入金額
         /// </summary>
-        public string TrackName { get; set; }
-
-        /// <summary>
-        /// レース番号
-        /// </summary>
-        public int RaceNum { get; set; }
-
-        /// <summary>
-        /// レース名
-        /// </summary>
-        public string RaceName { get; set; }
-
-        /// <summary>
-        /// 芝・ダ
-        /// </summary>
-        public string TrackType { get; set; }
-
-        /// <summary>
-        /// 距離
-        /// </summary>
-        public int Distance { get; set; }
-
-        /// <summary>
-        /// クラス
-        /// </summary>
-        public string Class { get; set; }
-
-        /// <summary>
-        /// 馬場状態
-        /// </summary>
-        public string TrackCondition { get; set; }
-
-        /// <summary>
-        /// ハンデ戦フラグ
-        /// </summary>
-        public bool IsHandicap { get; set; }
-
-        /// <summary>
-        /// 牝馬限定戦フラグ
-        /// </summary>
-        public bool IsOnlyFemale { get; set; }
-
-        /// <summary>
-        /// ２・３歳戦フラグ
-        /// </summary>
-        public bool IsOnlyYouth { get; set; }
-
-        /// <summary>
-        /// 馬券収支情報
-        /// </summary>
-        public IEnumerable<IBet> Bettings { get; set; }
+        public int Payout { get; set; }
     }
 }
