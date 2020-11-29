@@ -8,6 +8,11 @@ namespace AruruDB
     public interface IAruruDatabase
     {
         /// <summary>
+        /// データベースを初期化する
+        /// </summary>
+        void Init();
+
+        /// <summary>
         /// 馬券種別テーブルをロードする。
         /// </summary>
         /// <returns></returns>

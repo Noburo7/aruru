@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace AruruDB
@@ -13,7 +14,7 @@ namespace AruruDB
         private static readonly string _trackConditionTableNm = "t_track_condition";
         private static readonly string _trackTableNm = "t_track";
         private static readonly string _trackTypeTableNm = "t_track_type";
-        private SQLiteDB sqliteDB;
+        private SQLiteDB _DB;
 
         /// <summary>
         /// コンストラクタ
@@ -22,8 +23,18 @@ namespace AruruDB
         public bool Init(string dbName)
         {
             //TODO: ファイルチェック
-            sqliteDB = new SQLiteDB(dbName);
+            _DB = new SQLiteDB(dbName);
             return true;
+        }
+
+        /// <summary>
+        /// データベースを初期化する
+        /// </summary>
+        public void Init()
+        {
+            CreateDB();
+            CreateDBTables();
+            InsertDBRecords();
         }
 
         /// <summary>
@@ -35,7 +46,7 @@ namespace AruruDB
             var records = new List<IBakenType>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_bakenTypeTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_bakenTypeTableNm}");
                 foreach (var row in table)
                 {
                     var bakenType = new BakenTypeTableRecord
@@ -64,7 +75,7 @@ namespace AruruDB
             var records = new List<IRaceClass>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_classTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_classTableNm}");
                 foreach (var row in table)
                 {
                     var raceClass = new RaceClassTableRecord();
@@ -90,7 +101,7 @@ namespace AruruDB
             var records = new List<ITrackCondition>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_trackConditionTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_trackConditionTableNm}");
                 foreach (var row in table)
                 {
                     var condition = new TrackConditionTableRecord();
@@ -116,7 +127,7 @@ namespace AruruDB
             var records = new List<ITrack>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_trackTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_trackTableNm}");
                 foreach (var row in table)
                 {
                     var track = new TrackTableRecord();
@@ -142,7 +153,7 @@ namespace AruruDB
             var records = new List<ITrackType>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_trackTypeTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_trackTypeTableNm}");
                 foreach (var row in table)
                 {
                     var trackType = new TrackTypeTableRecord();
@@ -168,7 +179,7 @@ namespace AruruDB
             var records = new List<IRace>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_raceTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_raceTableNm}");
                 foreach (var row in table)
                 {
                     var race = new RaceTableRecord();
@@ -204,7 +215,7 @@ namespace AruruDB
             var records = new List<IBaken>();
             try
             {
-                var table = sqliteDB.Execute($"SELECT * FROM {_bakenTableNm}");
+                var table = _DB.Execute($"SELECT * FROM {_bakenTableNm}");
                 foreach (var row in table)
                 {
                     var baken = new BakenTableRecord();
@@ -236,7 +247,7 @@ namespace AruruDB
                         + "ORDER BY distance";
             try
             {
-                var result = sqliteDB.Execute(sql);
+                var result = _DB.Execute(sql);
                 foreach (var row in result)
                 {
                     list.Add(int.Parse(row[0]));
@@ -246,6 +257,80 @@ namespace AruruDB
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// AruruDBを作成する。
+        /// </summary>
+        private void CreateDB()
+        {
+            try
+            {
+                _DB.CreateDBFile();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// AruruDBのテーブルを作成する
+        /// </summary>
+        private void CreateDBTables()
+        {
+            var tableFilePathList = new List<string>
+            {
+                @"Sql\Table\01_T_Baken_Type.sql",
+                @"Sql\Table\02_T_Track.sql",
+                @"Sql\Table\03_T_Track_Type.sql",
+                @"Sql\Table\04_T_Race_Class.sql",
+                @"Sql\Table\05_T_Track_Condition.sql",
+                @"Sql\Table\06_T_Race.sql",
+                @"Sql\Table\07_T_Baken.sql",
+                @"Sql\Table\08_T_Course.sql"
+            };
+
+            try
+            {
+                foreach (var path in tableFilePathList)
+                {
+                    var sql = File.ReadAllText(path);
+                    _DB.Execute(sql);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// AruruDBのレコードを挿入する
+        /// </summary>
+        private void InsertDBRecords()
+        {
+            var recordFilePathList = new List<string>
+            {
+                @"Sql\Record\01_T_Baken_Type_Record.sql",
+                @"Sql\Record\02_T_Track_Record.sql",
+                @"Sql\Record\03_T_Track_Type_Record.sql",
+                @"Sql\Record\04_T_Race_Class_Record.sql",
+                @"Sql\Record\05_T_Track_Condition_Record.sql",
+                @"Sql\Record\08_T_Course_Record.sql"
+            };
+            try
+            {
+                foreach (var path in recordFilePathList)
+                {
+                    var sql = File.ReadAllText(path);
+                    _DB.Execute(sql);
+                }
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

@@ -16,10 +16,10 @@ namespace AruruDB
         }
 
         /// <summary>
-        /// テーブルを作成する。
+        /// SQLiteDBファイルを作成する。
         /// </summary>
         /// <returns></returns>
-        public bool CreateTable() {
+        public bool CreateDBFile() {
             try {
                 SQLiteConnection.CreateFile(DBFileName);
                 return true;
@@ -32,7 +32,7 @@ namespace AruruDB
         /// <summary>
         /// sqlを実行し、結果をIEnumerable<string[]>で返す。
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="sql">sql</param>
         /// <returns></returns>
         public IEnumerable<string[]> Execute(string sql) {
             var result = new List<string[]>();
