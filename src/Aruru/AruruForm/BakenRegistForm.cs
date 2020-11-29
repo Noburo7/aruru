@@ -215,6 +215,7 @@ namespace Aruru.AruruForm
             {
                 _DB.InsertBakenResult(GenerateRaceInfo(), GenerateBakenList());
                 MessageBox.Show("登録完了！", "馬券登録", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
@@ -269,7 +270,7 @@ namespace Aruru.AruruForm
         private IRace GenerateRaceInfo()
         {
             var raceInfo = new Race();
-            raceInfo.Date = DateTimePicker.Value.ToString("yyyymmdd");
+            raceInfo.Date = DateTimePicker.Value.ToString("yyyyMMdd");
             raceInfo.TrackNm = TrackNameComboBox.Text;
             raceInfo.RaceNum = int.Parse(RaceNumberComboBox.Text);
             raceInfo.RaceNm = RaceNameTextBox.Text;
@@ -290,7 +291,7 @@ namespace Aruru.AruruForm
             {
                 var baken = new Baken();
                 baken.BakenTypeNm = BakenTypeComboBox1.Text;
-                baken.Investment = int.Parse(BetTextBox1.Text);
+                baken.Investment = int.Parse(BetTextBox1.Text) * 100;
                 baken.Payout = int.Parse(PayoutTextBox1.Text);
                 bakenList.Add(baken);
             }
@@ -299,7 +300,7 @@ namespace Aruru.AruruForm
             {
                 var baken = new Baken();
                 baken.BakenTypeNm = BakenTypeComboBox2.Text;
-                baken.Investment = int.Parse(BetTextBox2.Text);
+                baken.Investment = int.Parse(BetTextBox2.Text) * 100;
                 baken.Payout = int.Parse(PayoutTextBox2.Text);
                 bakenList.Add(baken);
             }
@@ -308,7 +309,7 @@ namespace Aruru.AruruForm
             {
                 var baken = new Baken();
                 baken.BakenTypeNm = BakenTypeComboBox3.Text;
-                baken.Investment = int.Parse(BetTextBox3.Text);
+                baken.Investment = int.Parse(BetTextBox3.Text) * 100;
                 baken.Payout = int.Parse(PayoutTextBox3.Text);
                 bakenList.Add(baken);
             }
@@ -317,7 +318,7 @@ namespace Aruru.AruruForm
             {
                 var baken = new Baken();
                 baken.BakenTypeNm = BakenTypeComboBox4.Text;
-                baken.Investment = int.Parse(BetTextBox4.Text);
+                baken.Investment = int.Parse(BetTextBox4.Text) * 100;
                 baken.Payout = int.Parse(PayoutTextBox4.Text);
                 bakenList.Add(baken);
             }
@@ -326,7 +327,7 @@ namespace Aruru.AruruForm
             {
                 var baken = new Baken();
                 baken.BakenTypeNm = BakenTypeComboBox5.Text;
-                baken.Investment = int.Parse(BetTextBox5.Text);
+                baken.Investment = int.Parse(BetTextBox5.Text) * 100;
                 baken.Payout = int.Parse(PayoutTextBox5.Text);
                 bakenList.Add(baken);
             }

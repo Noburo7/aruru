@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using AruruDB.Table;
+using AruruDB.Table.Record;
 
 namespace AruruDB
 {
@@ -59,14 +60,14 @@ namespace AruruDB
             _DB = new SQLiteDB(dbFile);
             var tables = new List<ITable>
             {
-                (BakenTable = new BakenTable(_DB)),
                 (BakenTypeTable = new BakenTypeTable(_DB)),
-                (CourseTable = new CourseTable(_DB)),
-                (RaceClassTable = new RaceClassTable(_DB)),
-                (RaceTable = new RaceTable(_DB)),
-                (TrackConditionTable = new TrackConditionTable(_DB)),
                 (TrackTable = new TrackTable(_DB)),
-                (TrackTypeTable = new TrackTypeTable(_DB))
+                (TrackTypeTable = new TrackTypeTable(_DB)),
+                (RaceClassTable = new RaceClassTable(_DB)),
+                (TrackConditionTable = new TrackConditionTable(_DB)),
+                (CourseTable = new CourseTable(_DB)),
+                (RaceTable = new RaceTable(_DB)),
+                (BakenTable = new BakenTable(_DB))
             };
 
             //SQLiteファイルがない場合は初期化する
@@ -102,9 +103,49 @@ namespace AruruDB
         /// レース・馬券を登録する
         /// </summary>
         /// <param name="baken"></param>
-        public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> baken)
+        public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> bakens)
         {
-            //TODO:Implement
+            var trackID = TrackTable.Records.Where(o => o.Name == raceInfo.TrackNm).First().ID;
+            var trackTypeID = TrackTypeTable.Records.Where(o => o.Name == raceInfo.TrackTypeNm).First().ID;
+            var courseID = CourseTable.Records.Where(o => o.TrackID == trackID && o.TrackTypeID == trackTypeID && o.Distance == raceInfo.Distance).First().ID;
+            var trackConditionID = TrackConditionTable.Records.Where(o => o.Name == raceInfo.TrackConditionNm).First().ID;
+            var classID = RaceClassTable.Records.Where(o => o.Name == raceInfo.RaceClassNm).First().ID;
+
+            if (RaceTable.Records.Any(o => o.Date == raceInfo.Date && o.CourseID == courseID && o.RaceNumber == raceInfo.RaceNum))
+            {
+                //テーブル更新
+            }
+            else
+            {
+                //レーステーブル新規登録
+                var raceRecord = new RaceRecord();
+                raceRecord.Date = raceInfo.Date;
+                raceRecord.CourseID = courseID;
+                raceRecord.RaceNumber = raceInfo.RaceNum;
+                raceRecord.RaceName = raceInfo.RaceNm;
+                raceRecord.RaceClassID = classID;
+                raceRecord.TrackConditionID = trackConditionID;
+                raceRecord.IsHandicap = raceInfo.IsHandicap ? 1 : 0;
+                raceRecord.IsOnlyFemale = raceInfo.IsOnlyFemale ? 1 : 0;
+                raceRecord.IsOnlyYouth = raceInfo.IsOnlyYouth ? 1 : 0;
+                RaceTable.InsertRecord(raceRecord);
+
+                //レースID取得
+                RaceTable.ReadTable();
+                var raceID = RaceTable.Records.Where(o => o.Date == raceRecord.Date && o.CourseID == raceRecord.CourseID && o.RaceNumber == raceRecord.RaceNumber).First().ID;
+
+                //馬券登録
+                foreach (var baken in bakens)
+                {
+                    var bakenRecord = new BakenRecord();
+                    bakenRecord.RaceID = raceID;
+                    bakenRecord.BakenTypeID = BakenTypeTable.Records.Where(o => o.Name == baken.BakenTypeNm).First().ID;
+                    bakenRecord.Investment = baken.Investment;
+                    bakenRecord.Payout = baken.Payout;
+                    BakenTable.InsertRecord(bakenRecord);
+                }
+                BakenTable.ReadTable();
+            }
         }
 
         /// <summary>

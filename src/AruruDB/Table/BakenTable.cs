@@ -21,7 +21,7 @@ namespace AruruDB.Table
         {
             try
             {
-                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Table\07_T_Baken.sql"));
+                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Table\08_T_Baken.sql"));
             }
             catch (Exception ex)
             {
@@ -53,6 +53,17 @@ namespace AruruDB.Table
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
+        }
+
+        public void InsertRecord(IBakenRecord record)
+        {
+            var sql = $"INSERT INTO {_bakenTableNm} "
+                    + "VALUES(null, "
+                    + $"{record.RaceID},"
+                    + $"{record.BakenTypeID},"
+                    + $"{record.Investment},"
+                    + $"{record.Payout})";
+            SQLiteDB.ExecuteSql(sql);
         }
     }
 }

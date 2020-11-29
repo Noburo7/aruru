@@ -77,20 +77,25 @@ namespace Aruru.AruruForm
             foreach (var record in _aruruDB.RaceTable.Records)
             {
                 string[] row = new string[14];
+                var courseInfo = _aruruDB.CourseTable.Records.Where(o => o.ID == record.CourseID).First();
+
                 row[0] = record.Date;
-                row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == record.TrackID).First().Name;
+                row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == courseInfo.TrackID).First().Name;
                 row[2] = record.RaceNumber.ToString();
                 row[3] = record.RaceName;
                 row[4] = _aruruDB.RaceClassTable.Records.Where(o => o.ID == record.RaceClassID).First().Name;
-                row[5] = _aruruDB.TrackTypeTable.Records.Where(o => o.ID == record.TrackTypeID).First().Name;
-                row[6] = record.Distance.ToString();
+                row[5] = _aruruDB.TrackTypeTable.Records.Where(o => o.ID == courseInfo.TrackTypeID).First().Name;
+                row[6] = courseInfo.Distance.ToString();
                 row[7] = _aruruDB.TrackConditionTable.Records.Where(o => o.ID == record.TrackConditionID).First().Name;
                 row[8] = record.IsHandicap == 1 ? "○" : "";
                 row[9] = record.IsOnlyFemale == 1 ? "○" : "";
                 row[10] = record.IsOnlyYouth == 1? "○" : "";
-                row[11] = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Investment).ToString("#,0");
-                row[12] = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Payout).ToString("#,0");
-                row[13] = (int.Parse(row[12]) - int.Parse(row[11])).ToString("#,0");
+
+                var sum_invesment = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Investment);
+                var sum_payout = _aruruDB.BakenTable.Records.Where(o => o.RaceID == record.ID).Sum(o => o.Payout);
+                row[11] = sum_invesment.ToString("#,0");
+                row[12] = sum_payout.ToString("#,0");
+                row[13] = (sum_payout - sum_invesment).ToString("#,0");
                 BakenListView.Items.Add(new ListViewItem(row));
                 BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }

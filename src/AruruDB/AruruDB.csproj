@@ -10,15 +10,15 @@
     <None Remove="Sql\Record\03_T_Track_Type_Record.sql" />
     <None Remove="Sql\Record\04_T_Race_Class_Record.sql" />
     <None Remove="Sql\Record\05_T_Track_Condition_Record.sql" />
-    <None Remove="Sql\Record\08_T_Course_Record.sql" />
+    <None Remove="Sql\Record\06_T_Course_Record.sql" />
     <None Remove="Sql\Table\01_T_Baken_Type.sql" />
     <None Remove="Sql\Table\02_T_Track.sql" />
     <None Remove="Sql\Table\03_T_Track_Type.sql" />
     <None Remove="Sql\Table\04_T_Race_Class.sql" />
     <None Remove="Sql\Table\05_T_Track_Condition.sql" />
-    <None Remove="Sql\Table\06_T_Race.sql" />
-    <None Remove="Sql\Table\07_T_Baken.sql" />
-    <None Remove="Sql\Table\08_T_Course.sql" />
+    <None Remove="Sql\Table\06_T_Course.sql" />
+    <None Remove="Sql\Table\07_T_Race.sql" />
+    <None Remove="Sql\Table\08_T_Baken.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +37,7 @@
     <Content Include="Sql\Record\05_T_Track_Condition_Record.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\Record\08_T_Course_Record.sql">
+    <Content Include="Sql\Record\06_T_Course_Record.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sql\Table\01_T_Baken_Type.sql">
@@ -55,13 +55,13 @@
     <Content Include="Sql\Table\05_T_Track_Condition.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\Table\06_T_Race.sql">
+    <Content Include="Sql\Table\07_T_Race.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\Table\07_T_Baken.sql">
+    <Content Include="Sql\Table\08_T_Baken.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Sql\Table\08_T_Course.sql">
+    <Content Include="Sql\Table\06_T_Course.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

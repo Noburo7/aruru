@@ -21,8 +21,8 @@ namespace AruruDB.Table
         {
             try
             {
-                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Table\08_T_Course.sql"));
-                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Record\08_T_Course_Record.sql"));
+                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Table\06_T_Course.sql"));
+                SQLiteDB.ExecuteSql(File.ReadAllText(@"Sql\Record\06_T_Course_Record.sql"));
             }
             catch (Exception ex)
             {

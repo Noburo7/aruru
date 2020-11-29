@@ -7,5 +7,7 @@ namespace AruruDB.Table
     public interface IRaceTable : ITable
     {
         IEnumerable<IRaceRecord> Records { get; }
+
+        void InsertRecord(IRaceRecord record);
     }
 }

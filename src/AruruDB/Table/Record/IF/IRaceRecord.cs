@@ -16,9 +16,9 @@
         string Date { get; }
 
         /// <summary>
-        /// 競馬場ID
+        /// コースID
         /// </summary>
-        int TrackID { get; }
+        int CourseID { get; }
 
         /// <summary>
         /// レース番号
@@ -29,16 +29,6 @@
         /// レース名
         /// </summary>
         string RaceName { get; }
-
-        /// <summary>
-        /// 芝・ダ
-        /// </summary>
-        int TrackTypeID { get; }
-
-        /// <summary>
-        /// 距離
-        /// </summary>
-        int Distance { get; }
 
         /// <summary>
         /// クラス

@@ -42,11 +42,9 @@
     {
         public int ID { get; set; }
         public string Date { get; set; }
-        public int TrackID { get; set; }
+        public int CourseID { get; set; }
         public int RaceNumber { get; set; }
         public string RaceName { get; set; }
-        public int TrackTypeID { get; set; }
-        public int Distance { get; set; }
         public int RaceClassID { get; set; }
         public int TrackConditionID { get; set; }
         public int IsHandicap { get; set; }
