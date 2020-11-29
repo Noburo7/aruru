@@ -6,25 +6,27 @@ namespace AruruDB
     /// <summary>
     /// SQLiteDBクラス
     /// </summary>
-    internal class SQLiteDB
+    internal class SQLiteDB : ISQLiteDB
     {
-        
-        public string DBFileName { get; }
+        private string _sqliteFileName;
 
-        public SQLiteDB(string sqliteFileNm) {
-            DBFileName = sqliteFileNm;
+        public SQLiteDB(string sqliteFileNm)
+        {
+            _sqliteFileName = sqliteFileNm;
         }
 
         /// <summary>
         /// SQLiteDBファイルを作成する。
         /// </summary>
         /// <returns></returns>
-        public bool CreateDBFile() {
-            try {
-                SQLiteConnection.CreateFile(DBFileName);
-                return true;
+        public void CreateDBFile()
+        {
+            try
+            {
+                SQLiteConnection.CreateFile(_sqliteFileName);
             }
-            catch {
+            catch
+            {
                 throw;
             }
         }
@@ -34,18 +36,24 @@ namespace AruruDB
         /// </summary>
         /// <param name="sql">sql</param>
         /// <returns></returns>
-        public IEnumerable<string[]> Execute(string sql) {
+        public IEnumerable<string[]> ExecuteSql(string sql)
+        {
             var result = new List<string[]>();
-            try {
-                var sqlConnectionSb = new SQLiteConnectionStringBuilder { DataSource = DBFileName };
-                using (var con = new SQLiteConnection(sqlConnectionSb.ToString())) {
+            try
+            {
+                var sqlConnectionSb = new SQLiteConnectionStringBuilder { DataSource = _sqliteFileName };
+                using (var con = new SQLiteConnection(sqlConnectionSb.ToString()))
+                {
                     con.Open();
-                    using (var cmd = new SQLiteCommand(con)) {
+                    using (var cmd = new SQLiteCommand(con))
+                    {
                         cmd.CommandText = sql;
                         var res = cmd.ExecuteReader();
-                        while (res.Read()) {
+                        while (res.Read())
+                        {
                             string[] column = new string[res.FieldCount];
-                            for (var j = 0; j < res.FieldCount; j++) {
+                            for (var j = 0; j < res.FieldCount; j++)
+                            {
                                 column[j] = res[j].ToString();
                             }
                             result.Add(column);

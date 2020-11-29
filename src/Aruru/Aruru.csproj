@@ -51,8 +51,6 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Feature\IDBController.cs" />
-    <Compile Include="Model\DBController.cs" />
     <Compile Include="AruruForm\BakenMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>

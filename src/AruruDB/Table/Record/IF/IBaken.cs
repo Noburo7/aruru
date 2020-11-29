@@ -1,4 +1,4 @@
-﻿namespace AruruDB
+﻿namespace AruruDB.Table.Record
 {
     /// <summary>
     /// 馬券収支

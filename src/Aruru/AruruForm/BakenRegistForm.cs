@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using AruruDB;
 
 namespace Aruru.AruruForm
 {
@@ -9,14 +9,14 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenRegistForm : Form
     {
-        private IDBController _DBController;
+        private IAruruDatabase _DB;
         public Baken Baken { get; private set; }
 
-        public BakenRegistForm(IDBController controller, Baken bukenInfo = null)
+        public BakenRegistForm(IAruruDatabase database, Baken bukenInfo = null)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
-            _DBController = controller;
+            _DB = database;
             Baken = bukenInfo;
         }
 
@@ -36,7 +36,7 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackNameComboBox()
         {
-            foreach (var record in _DBController.TrackTable)
+            foreach (var record in _DB.TrackTable.Records)
             {
                 TrackNameComboBox.Items.Add(record.Name);
             }
@@ -60,7 +60,7 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackConditionComboBox()
         {
-            foreach (var record in _DBController.TrackConditionTable)
+            foreach (var record in _DB.TrackConditionTable.Records)
             {
                 TrackConditionComboBox.Items.Add(record.Name);
             }
@@ -72,7 +72,7 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitTrackTypeComboBox()
         {
-            foreach (var record in _DBController.TrackTypeTable)
+            foreach (var record in _DB.TrackTypeTable.Records)
             {
                 TrackTypeComboBox.Items.Add(record.Name);
             }
@@ -84,7 +84,7 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitRaceClassComboBox()
         {
-            foreach (var record in _DBController.ClassTable)
+            foreach (var record in _DB.RaceClassTable.Records)
             {
                 RaceClassComboBox.Items.Add(record.Name);
             }
@@ -96,7 +96,7 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitBakenTypeComboBox()
         {
-            foreach (var record in _DBController.BakenTypeTable)
+            foreach (var record in _DB.BakenTypeTable.Records)
             {
                 BakenTypeComboBox1.Items.Add(record.Name);
                 BakenTypeComboBox2.Items.Add(record.Name);
@@ -161,7 +161,7 @@ namespace Aruru.AruruForm
         {
             DistanceComboBox.Items.Clear();
             if (string.IsNullOrEmpty(TrackNameComboBox.Text) || string.IsNullOrEmpty(TrackTypeComboBox.Text)) return;
-            var distanceList = _DBController.EnumerateDistance(TrackNameComboBox.Text, TrackTypeComboBox.Text);
+            var distanceList = _DB.DistanceList(TrackNameComboBox.Text, TrackTypeComboBox.Text);
             foreach (var distance in distanceList)
             {
                 DistanceComboBox.Items.Add(distance);

@@ -1,12 +1,12 @@
-﻿namespace AruruDB
+﻿namespace AruruDB.Table.Record
 {
-    internal class BakenTypeTableRecord : IBakenType
+    internal class BakenType : IBakenType
     {
         public int ID { get; set; }
         public string Name { get; set; }
     }
 
-    internal class CourseTableRecord : ICourse
+    internal class Course : ICourse
     {
         public int ID { get; set; }
         public int TrackID { get; set; }
@@ -14,31 +14,31 @@
         public int Distance { get; set; }
     }
 
-    internal class RaceClassTableRecord : IRaceClass
+    internal class RaceClass : IRaceClass
     {
         public int ID { get; set; }
         public string Name { get; set; }
     }
 
-    internal class TrackTableRecord : ITrack
+    internal class Track : ITrack
     {
         public int ID { get; set; }
         public string Name { get; set; }
     }
 
-    internal class TrackConditionTableRecord : ITrackCondition
+    internal class TrackCondition : ITrackCondition
     {
         public int ID { get; set; }
         public string Name { get; set; }
     }
 
-    internal class TrackTypeTableRecord : ITrackType
+    internal class TrackType : ITrackType
     {
         public int ID { get; set; }
         public string Name { get; set; }
     }
 
-    internal class RaceTableRecord : IRace
+    internal class Race : IRace
     {
         public int ID { get; set; }
         public string Date { get; set; }
@@ -54,7 +54,7 @@
         public int IsOnlyYouth { get; set; }
     }
 
-    internal class BakenTableRecord : IBaken
+    internal class Baken : IBaken
     {
         public int BakenID { get; set; }
         public int RaceID { get; set; }

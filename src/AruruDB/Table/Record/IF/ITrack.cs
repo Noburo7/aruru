@@ -1,17 +1,17 @@
-﻿namespace AruruDB
+﻿namespace AruruDB.Table.Record
 {
     /// <summary>
-    /// 馬場状態
+    /// 競馬場
     /// </summary>
-    public interface ITrackCondition
+    public interface ITrack
     {
         /// <summary>
-        /// 馬場状態ID
+        /// 競馬場ID
         /// </summary>
         int ID { get; }
 
         /// <summary>
-        /// 馬場状態名
+        /// 競馬場名
         /// </summary>
         string Name { get; }
     }

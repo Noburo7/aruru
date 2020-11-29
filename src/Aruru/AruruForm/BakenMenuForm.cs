@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Linq;
+using AruruDB;
 
 namespace Aruru.AruruForm
 {
@@ -9,7 +9,7 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenMenuForm : Form
     {
-        private IDBController _DBController = new DBController();
+        private IAruruDatabase _aruruDB = new AruruDatabase("AruruDB.sqlite");
 
         public BakenMenuForm()
         {
@@ -19,7 +19,7 @@ namespace Aruru.AruruForm
 
         private void NewRegistButton_Click(object sender, EventArgs e)
         {
-            using (var form = new BakenRegistForm(_DBController))
+            using (var form = new BakenRegistForm(_aruruDB))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {

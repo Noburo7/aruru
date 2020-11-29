@@ -1,4 +1,4 @@
-﻿namespace AruruDB
+﻿namespace AruruDB.Table.Record
 {
     /// <summary>
     /// レース属性

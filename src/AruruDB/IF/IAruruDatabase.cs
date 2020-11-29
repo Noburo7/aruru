@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AruruDB.Table;
+using System.Collections.Generic;
 
 namespace AruruDB
 {
@@ -8,56 +9,45 @@ namespace AruruDB
     public interface IAruruDatabase
     {
         /// <summary>
-        /// データベースを初期化する
+        /// 馬券テーブル
         /// </summary>
-        void Init();
+        IBakenTable BakenTable { get; }
 
         /// <summary>
-        /// 馬券種別テーブルをロードする。
+        /// 馬券種テーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<IBakenType> ReadBakenTypeTable();
+        IBakenTypeTable BakenTypeTable { get; }
 
         /// <summary>
-        /// レースクラステーブルをロードする。
+        /// コーステーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<IRaceClass> ReadRaceClassTable();
+        ICourseTable CourseTable { get; }
 
         /// <summary>
-        /// 馬場状態テーブルをロードする。
+        /// レースクラステーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<ITrackCondition> ReadTrackConditionTable();
+        IRaceClassTable RaceClassTable { get; }
 
         /// <summary>
-        /// 競馬場テーブルをロードする。
+        /// レーステーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<ITrack> ReadTrackTable();
+        IRaceTable RaceTable { get; }
 
         /// <summary>
-        /// トラックタイプテーブルをロードする。
+        /// 馬場状態テーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<ITrackType> ReadTrackTypeTable();
+        ITrackConditionTable TrackConditionTable { get; }
 
         /// <summary>
-        /// レーステーブルをロードする。
+        /// 競馬場テーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<IRace> ReadRaceTable();
+        ITrackTable TrackTable { get; }
 
         /// <summary>
-        /// 馬券テーブルをロードする。
+        /// コースタイプテーブル
         /// </summary>
-        /// <returns></returns>
-        IEnumerable<IBaken> ReadBakenTable();
+        ITrackTypeTable TrackTypeTable { get; }
 
-        /// <summary>
-        /// 競馬場・トラックタイプに対する距離リストを返す。
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<int> ReadDistanceList(int trackID, int trackTypeID);
+        IEnumerable<int> DistanceList(string trackNm, string trackTypeNm);
     }
 }

@@ -1,17 +1,17 @@
-﻿namespace AruruDB
+﻿namespace AruruDB.Table.Record
 {
     /// <summary>
-    /// トラックタイプ
+    /// レースクラス
     /// </summary>
-    public interface ITrackType
+    public interface IRaceClass
     {
         /// <summary>
-        /// トラックタイプID
+        /// レースクラスID
         /// </summary>
         int ID { get; }
 
         /// <summary>
-        /// 芝・ダ
+        /// クラス名
         /// </summary>
         string Name { get; }
     }
