@@ -19,17 +19,17 @@ namespace Aruru
         /// </summary>
         public DBController()
         {
-            _db = new AruruDatabase(DBNAME);
+            _db = new AruruDatabase();
             LoadMasterTables();
         }
 
         private void LoadMasterTables()
         {
-            BakenTypeTable = _db.LoadBakenTypeTable();
-            ClassTable = _db.LoadRaceClassTable();
-            TrackConditionTable = _db.LoadTrackConditionTable();
-            TrackTable = _db.LoadTrackTable();
-            TrackTypeTable = _db.LoadTrackTypeTable();
+            BakenTypeTable = _db.ReadBakenTypeTable();
+            ClassTable = _db.ReadRaceClassTable();
+            TrackConditionTable = _db.ReadTrackConditionTable();
+            TrackTable = _db.ReadTrackTable();
+            TrackTypeTable = _db.ReadTrackTypeTable();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Aruru
         {
             var trackID = TrackTable.Where(o => o.Name == trackName).First().ID;
             var trackTypeID = TrackTypeTable.Where(o => o.Name == trackTypeName).First().ID;
-            return _db.LoadDistanceList(trackID, trackTypeID);
-        }        
+            return _db.ReadDistanceList(trackID, trackTypeID);
+        }
     }
 }

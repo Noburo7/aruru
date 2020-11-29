@@ -11,48 +11,48 @@ namespace AruruDB
         /// 馬券種別テーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IBakenType> LoadBakenTypeTable();
+        IEnumerable<IBakenType> ReadBakenTypeTable();
 
         /// <summary>
         /// レースクラステーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IRaceClass> LoadRaceClassTable();
+        IEnumerable<IRaceClass> ReadRaceClassTable();
 
         /// <summary>
         /// 馬場状態テーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ITrackCondition> LoadTrackConditionTable();
+        IEnumerable<ITrackCondition> ReadTrackConditionTable();
 
         /// <summary>
         /// 競馬場テーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ITrack> LoadTrackTable();
+        IEnumerable<ITrack> ReadTrackTable();
 
         /// <summary>
         /// トラックタイプテーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ITrackType> LoadTrackTypeTable();
+        IEnumerable<ITrackType> ReadTrackTypeTable();
 
         /// <summary>
         /// レーステーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IRace> LoadRaceTable();
+        IEnumerable<IRace> ReadRaceTable();
 
         /// <summary>
         /// 馬券テーブルをロードする。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IBaken> LoadBakenTable();
+        IEnumerable<IBaken> ReadBakenTable();
 
         /// <summary>
         /// 競馬場・トラックタイプに対する距離リストを返す。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<int> LoadDistanceList(int trackID, int trackTypeID);
+        IEnumerable<int> ReadDistanceList(int trackID, int trackTypeID);
     }
 }
