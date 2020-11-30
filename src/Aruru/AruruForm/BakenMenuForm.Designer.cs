@@ -43,6 +43,7 @@
             this.BakenListView.Size = new System.Drawing.Size(803, 449);
             this.BakenListView.TabIndex = 0;
             this.BakenListView.UseCompatibleStateImageBehavior = false;
+            this.BakenListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.BakenListView_MouseDoubleClick);
             // 
             // NewRegistButton
             // 

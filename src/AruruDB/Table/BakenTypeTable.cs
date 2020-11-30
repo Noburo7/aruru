@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -52,6 +53,11 @@ namespace AruruDB.Table
             {
                 throw ex;
             }
+        }
+
+        public int BakenTypeID(string bakenTypeNm)
+        {
+            return Records.Where(o => o.Name == bakenTypeNm).First().ID;
         }
     }
 }

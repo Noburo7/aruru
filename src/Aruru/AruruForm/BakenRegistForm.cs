@@ -11,14 +11,14 @@ namespace Aruru.AruruForm
     public partial class BakenRegistForm : Form
     {
         private IAruruDatabase _DB;
-        public Baken Baken { get; private set; }
+        private int _raceID;
 
-        public BakenRegistForm(IAruruDatabase database, Baken bukenInfo = null)
+        public BakenRegistForm(IAruruDatabase database, int raceID = -1)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             _DB = database;
-            Baken = bukenInfo;
+            _raceID = raceID;
         }
 
         private void Form_Load(object sender, EventArgs e)

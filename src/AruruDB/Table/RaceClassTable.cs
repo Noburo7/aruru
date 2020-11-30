@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -50,6 +51,11 @@ namespace AruruDB.Table
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
+        }
+
+        public int ClassID(string classNm)
+        {
+            return Records.Where(o => o.Name == classNm).First().ID;
         }
     }
 }

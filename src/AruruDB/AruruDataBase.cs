@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Collections.Generic;
 using AruruDB.Table;
 using AruruDB.Table.Record;
@@ -94,9 +93,7 @@ namespace AruruDB
         /// <returns>距離リスト</returns>
         public IEnumerable<int> DistanceList(string trackNm, string trackTypeNm)
         {
-            var trackID = TrackTable.Records.Where(o => o.Name == trackNm).First().ID;
-            var trackTypeID = TrackTypeTable.Records.Where(o => o.Name == trackTypeNm).First().ID;
-            return CourseTable.DistanceList(trackID, trackTypeID);
+            return CourseTable.DistanceList(TrackTable.TrackID(trackNm), TrackTypeTable.TrackTypeID(trackTypeNm));
         }
 
         /// <summary>
@@ -105,13 +102,11 @@ namespace AruruDB
         /// <param name="baken"></param>
         public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> bakens)
         {
-            var trackID = TrackTable.Records.Where(o => o.Name == raceInfo.TrackNm).First().ID;
-            var trackTypeID = TrackTypeTable.Records.Where(o => o.Name == raceInfo.TrackTypeNm).First().ID;
-            var courseID = CourseTable.Records.Where(o => o.TrackID == trackID && o.TrackTypeID == trackTypeID && o.Distance == raceInfo.Distance).First().ID;
-            var trackConditionID = TrackConditionTable.Records.Where(o => o.Name == raceInfo.TrackConditionNm).First().ID;
-            var classID = RaceClassTable.Records.Where(o => o.Name == raceInfo.RaceClassNm).First().ID;
+            var courseID = CourseTable.CourseID(TrackTable.TrackID(raceInfo.TrackNm), TrackTypeTable.TrackTypeID(raceInfo.TrackTypeNm), raceInfo.Distance);
+            var trackConditionID = TrackConditionTable.TrackConditionID(raceInfo.TrackConditionNm);
+            var classID = RaceClassTable.ClassID(raceInfo.RaceClassNm);
 
-            if (RaceTable.Records.Any(o => o.Date == raceInfo.Date && o.CourseID == courseID && o.RaceNumber == raceInfo.RaceNum))
+            if (RaceTable.ExistRecord(raceInfo.Date, courseID, raceInfo.RaceNum))
             {
                 //テーブル更新
             }
@@ -132,14 +127,14 @@ namespace AruruDB
 
                 //レースID取得
                 RaceTable.ReadTable();
-                var raceID = RaceTable.Records.Where(o => o.Date == raceRecord.Date && o.CourseID == raceRecord.CourseID && o.RaceNumber == raceRecord.RaceNumber).First().ID;
+                var raceID = RaceTable.RaceID(raceRecord.Date, raceRecord.CourseID, raceRecord.RaceNumber);
 
                 //馬券登録
                 foreach (var baken in bakens)
                 {
                     var bakenRecord = new BakenRecord();
                     bakenRecord.RaceID = raceID;
-                    bakenRecord.BakenTypeID = BakenTypeTable.Records.Where(o => o.Name == baken.BakenTypeNm).First().ID;
+                    bakenRecord.BakenTypeID = BakenTypeTable.BakenTypeID(baken.BakenTypeNm);
                     bakenRecord.Investment = baken.Investment;
                     bakenRecord.Payout = baken.Payout;
                     BakenTable.InsertRecord(bakenRecord);

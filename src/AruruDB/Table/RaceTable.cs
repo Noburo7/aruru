@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -72,6 +73,23 @@ namespace AruruDB.Table
                 + $"{record.IsOnlyFemale},"
                 + $"{record.IsOnlyYouth})";
             SQLiteDB.ExecuteSql(sql);
+        }
+
+        /// <summary>
+        /// レースIDを返す
+        /// </summary>
+        /// <param name="date">日付</param>
+        /// <param name="courseID">コースID</param>
+        /// <param name="raceNumber">レース番号</param>
+        /// <returns>レースID</returns>
+        public int RaceID(string date, int courseID, int raceNumber)
+        {
+            return Records.Where(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber).First().ID;
+        }
+
+        public bool ExistRecord(string date, int courseID, int raceNumber)
+        {
+            return Records.Any(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber);
         }
     }
 }

@@ -100,5 +100,34 @@ namespace Aruru.AruruForm
                 BakenListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
+
+        private void BakenListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ShowBakenRegistForm();
+        }
+
+        private void ShowBakenRegistForm()
+        {
+            using (var form = new BakenRegistForm(_aruruDB, SelectedItemRaceID()))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    UpdateBakenListView();
+                }
+            }
+        }
+
+        private int SelectedItemRaceID()
+        {
+            var trackNm = BakenListView.SelectedItems[0].SubItems[1].Text;
+            var trackID = _aruruDB.TrackTable.TrackID(trackNm);
+            var trackTypeNm = BakenListView.SelectedItems[0].SubItems[5].Text;
+            var trackTypeID = _aruruDB.TrackTypeTable.TrackTypeID(trackTypeNm);
+            var distance = BakenListView.SelectedItems[0].SubItems[6].Text;
+            var courseID = _aruruDB.CourseTable.CourseID(trackID, trackTypeID, int.Parse(distance));
+            var date = BakenListView.SelectedItems[0].SubItems[0].Text;
+            var raceNumber = BakenListView.SelectedItems[0].SubItems[2].Text;
+            return _aruruDB.RaceTable.RaceID(date, courseID, int.Parse(raceNumber));
+        }
     }
 }

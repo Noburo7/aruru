@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -73,6 +74,11 @@ namespace AruruDB.Table
             {
                 throw ex;
             }
+        }
+
+        public int CourseID(int trackID, int trackTypeID, int distance)
+        {
+            return Records.Where(o => o.TrackID == trackID && o.TrackTypeID == trackTypeID && o.Distance == distance).First().ID;
         }
     }
 }

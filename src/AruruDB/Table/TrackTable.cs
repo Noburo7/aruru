@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -48,6 +49,11 @@ namespace AruruDB.Table
             {
                 throw ex;
             }
+        }
+
+        public int TrackID(string trackNm)
+        {
+            return Records.Where(o => o.Name == trackNm).First().ID;
         }
     }
 }
