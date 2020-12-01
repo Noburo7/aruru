@@ -65,5 +65,11 @@ namespace AruruDB.Table
                     + $"{record.Payout})";
             SQLiteDB.ExecuteSql(sql);
         }
+
+        public void DeleteRecords(int raceID)
+        {
+            var sql = $"DELETE FROM {_bakenTableNm} WHERE race_id IS {raceID};";
+            SQLiteDB.ExecuteSql(sql);
+        }
     }
 }

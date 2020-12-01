@@ -11,6 +11,7 @@ namespace Aruru.AruruForm
     public partial class BakenMenuForm : Form
     {
         private IAruruDatabase _aruruDB = new AruruDatabase("AruruDB.sqlite");
+        private static readonly string _dateDelimiter = "/";
 
         public BakenMenuForm()
         {
@@ -79,7 +80,7 @@ namespace Aruru.AruruForm
                 string[] row = new string[14];
                 var courseInfo = _aruruDB.CourseTable.Records.Where(o => o.ID == record.CourseID).First();
 
-                row[0] = record.Date;
+                row[0] = ConvertDateToDisplayDate(record.Date);
                 row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == courseInfo.TrackID).First().Name;
                 row[2] = record.RaceNumber.ToString();
                 row[3] = record.RaceName;
@@ -120,9 +121,40 @@ namespace Aruru.AruruForm
         private int SelectedItemRaceID()
         {
             var trackNm = BakenListView.SelectedItems[0].SubItems[1].Text;
-            var date = BakenListView.SelectedItems[0].SubItems[0].Text;
+            var date = ConvertDisplayDateToDate(BakenListView.SelectedItems[0].SubItems[0].Text);
             var raceNumber = BakenListView.SelectedItems[0].SubItems[2].Text;
             return _aruruDB.GetRaceID(date, trackNm, int.Parse(raceNumber));
+        }
+
+        private string ConvertDateToDisplayDate(string date)
+        {
+            return date.Substring(0, 4) + _dateDelimiter + date.Substring(4, 2) + _dateDelimiter + date.Substring(6, 2);
+        }
+
+        private string ConvertDisplayDateToDate(string displayDate)
+        {
+            return displayDate.Replace(_dateDelimiter, "");
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (BakenListView.SelectedItems.Count == 0) return;
+            var trackNm = BakenListView.SelectedItems[0].SubItems[1].Text;
+            var date = BakenListView.SelectedItems[0].SubItems[0].Text;
+            var raceNumber = BakenListView.SelectedItems[0].SubItems[2].Text;
+            if (!ConfirmUserToDelete(date, trackNm, raceNumber)) return;
+            date = ConvertDisplayDateToDate(date);
+            _aruruDB.DeleteRaceBakenRecord(date, trackNm, int.Parse(raceNumber));
+            MessageBox.Show("データを削除しました。", "データ削除", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            UpdateBakenListView();
+        }
+
+        private bool ConfirmUserToDelete(string date, string trackNm, string raceNumber)
+        {
+            var msg = "データを削除します。" + Environment.NewLine + Environment.NewLine;
+            msg += $"{date} {trackNm}{raceNumber}R";
+            var result = MessageBox.Show(msg, "データ削除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            return result == DialogResult.OK;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace AruruDB.Table
         /// <param name="record">INSERT対象</param>
         void InsertRecord(IRaceRecord record);
 
+        void DeleteRecord(int raceID);
+
         /// <summary>
         /// レースIDを返す
         /// </summary>

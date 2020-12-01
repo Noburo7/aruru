@@ -70,5 +70,7 @@ namespace AruruDB
         /// <param name="raceNum">レース番号</param>
         /// <returns>レースID</returns>
         int GetRaceID(string date, string trackNm, int raceNum);
+
+        void DeleteRaceBakenRecord(string date, string trackNm, int raceNum);
     }
 }

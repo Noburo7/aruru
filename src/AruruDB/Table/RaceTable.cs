@@ -51,6 +51,7 @@ namespace AruruDB.Table
                     race.IsOnlyYouth = int.Parse(row[9]);
                     records.Add(race);
                 }
+                records = records.OrderBy(o => o.Date).ToList();
                 Records = records;
             }
             catch (Exception ex)
@@ -72,6 +73,12 @@ namespace AruruDB.Table
                 + $"{record.IsHandicap},"
                 + $"{record.IsOnlyFemale},"
                 + $"{record.IsOnlyYouth})";
+            SQLiteDB.ExecuteSql(sql);
+        }
+
+        public void DeleteRecord(int raceID)
+        {
+            var sql = $"DELETE FROM {_raceTableNm} WHERE race_id IS {raceID};";
             SQLiteDB.ExecuteSql(sql);
         }
 
