@@ -8,5 +8,6 @@ namespace AruruDB.Table
         IEnumerable<ICourseRecord> Records { get; }
         IEnumerable<int> DistanceList(int trackID, int trackTypeID);
         int CourseID(int trackID, int trackTypeID, int distance);
+        IEnumerable<ICourseRecord> CourseList(int trackID);
     }
 }

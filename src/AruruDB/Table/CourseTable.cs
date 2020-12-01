@@ -80,5 +80,10 @@ namespace AruruDB.Table
         {
             return Records.Where(o => o.TrackID == trackID && o.TrackTypeID == trackTypeID && o.Distance == distance).First().ID;
         }
+
+        public IEnumerable<ICourseRecord> CourseList(int trackID)
+        {
+            return Records.Where(o => o.TrackID == trackID);
+        }
     }
 }

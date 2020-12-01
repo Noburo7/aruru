@@ -144,6 +144,19 @@ namespace AruruDB
         }
 
         /// <summary>
+        /// レースIDを返す
+        /// </summary>
+        /// <param name="date">日付</param>
+        /// <param name="TrackNm">競馬場名</param>
+        /// <param name="raceNum">レース番号</param>
+        /// <returns>レースID</returns>
+        public int GetRaceID(string date, string TrackNm, int raceNum)
+        {
+            var courseList = CourseTable.CourseList(TrackTable.TrackID(TrackNm));
+            return RaceTable.RaceID(date, courseList, raceNum);
+        }
+
+        /// <summary>
         /// AruruDBを作成する。
         /// </summary>
         private void CreateDB()

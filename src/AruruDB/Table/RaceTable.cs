@@ -87,6 +87,21 @@ namespace AruruDB.Table
             return Records.Where(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber).First().ID;
         }
 
+        public int RaceID(string date, IEnumerable<ICourseRecord> courseList, int raceNumber)
+        {
+            var raceID = -1;
+            foreach (var course in courseList)
+            {
+                if (!Records.Any(o => o.Date == date && o.CourseID == course.ID && o.RaceNumber == raceNumber))
+                {
+                    continue;
+                }
+                raceID =  Records.Where(o => o.Date == date && o.CourseID == course.ID && o.RaceNumber == raceNumber).First().ID;
+                break;
+            }
+            return raceID;
+        }
+
         public bool ExistRecord(string date, int courseID, int raceNumber)
         {
             return Records.Any(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber);
