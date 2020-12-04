@@ -7,5 +7,6 @@ namespace AruruDB.Table
     {
         IEnumerable<IBakenTypeRecord> Records { get; }
         int BakenTypeID(string bakenTypeNm);
+        string BakenType(int bakenTypeID);
     }
 }

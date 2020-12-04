@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AruruDB.Table
+﻿namespace AruruDB.Table
 {
     public interface ITable
     {

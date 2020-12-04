@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -64,12 +65,19 @@ namespace AruruDB.Table
                     + $"{record.Investment},"
                     + $"{record.Payout})";
             SQLiteDB.ExecuteSql(sql);
+            ReadTable();
         }
 
         public void DeleteRecords(int raceID)
         {
             var sql = $"DELETE FROM {_bakenTableNm} WHERE race_id IS {raceID};";
             SQLiteDB.ExecuteSql(sql);
+            ReadTable();
+        }
+
+        public IEnumerable<IBakenRecord> GetBakenList(int raceID)
+        {
+            return Records.Where(o => o.RaceID == raceID);
         }
     }
 }

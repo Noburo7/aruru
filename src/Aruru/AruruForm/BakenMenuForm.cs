@@ -109,13 +109,7 @@ namespace Aruru.AruruForm
 
         private void ShowBakenRegistForm()
         {
-            using (var form = new BakenRegistForm(_aruruDB, SelectedItemRaceID()))
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    UpdateBakenListView();
-                }
-            }
+            //TODO:Implement
         }
 
         private int SelectedItemRaceID()

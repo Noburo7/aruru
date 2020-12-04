@@ -11,14 +11,52 @@ namespace Aruru.AruruForm
     public partial class BakenRegistForm : Form
     {
         private IAruruDatabase _DB;
-        private int _raceID;
+        private ComboBox[] _bakenTypeComboBoxArray;
+        private TextBox[] _betTextBoxArray;
+        private TextBox[] _payoutTextBoxArray;
+        private Button[] _clearButtonArray;
 
-        public BakenRegistForm(IAruruDatabase database, int raceID = -1)
+        public BakenRegistForm(IAruruDatabase database)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             _DB = database;
-            _raceID = raceID;
+
+            _bakenTypeComboBoxArray = new ComboBox[5]
+            {
+                BakenTypeComboBox1,
+                BakenTypeComboBox2,
+                BakenTypeComboBox3,
+                BakenTypeComboBox4,
+                BakenTypeComboBox5
+            };
+
+            _betTextBoxArray = new TextBox[5]
+            {
+                BetTextBox1,
+                BetTextBox2,
+                BetTextBox3,
+                BetTextBox4,
+                BetTextBox5
+            };
+
+            _payoutTextBoxArray = new TextBox[5]
+            {
+                PayoutTextBox1,
+                PayoutTextBox2,
+                PayoutTextBox3,
+                PayoutTextBox4,
+                PayoutTextBox5
+            };
+
+            _clearButtonArray = new Button[5]
+            {
+                ClearButton1,
+                ClearButton2,
+                ClearButton3,
+                ClearButton4,
+                ClearButton5
+            };
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -97,20 +135,14 @@ namespace Aruru.AruruForm
         /// </summary>
         private void InitBakenTypeComboBox()
         {
-            foreach (var record in _DB.BakenTypeTable.Records)
+            foreach (var bakenTypeComboBox in _bakenTypeComboBoxArray)
             {
-                BakenTypeComboBox1.Items.Add(record.Name);
-                BakenTypeComboBox2.Items.Add(record.Name);
-                BakenTypeComboBox3.Items.Add(record.Name);
-                BakenTypeComboBox4.Items.Add(record.Name);
-                BakenTypeComboBox5.Items.Add(record.Name);
+                foreach (var record in _DB.BakenTypeTable.Records)
+                {
+                    bakenTypeComboBox.Items.Add(record.Name);
+                }
+                bakenTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             }
-
-            BakenTypeComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            BakenTypeComboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            BakenTypeComboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            BakenTypeComboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
-            BakenTypeComboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ClearButton1_Click(object sender, EventArgs e)

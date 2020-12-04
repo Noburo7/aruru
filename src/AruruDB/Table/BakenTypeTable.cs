@@ -59,5 +59,10 @@ namespace AruruDB.Table
         {
             return Records.Where(o => o.Name == bakenTypeNm).First().ID;
         }
+
+        public string BakenType(int bakenTypeID)
+        {
+            return Records.Where(o => o.ID == bakenTypeID).First().Name;
+        }
     }
 }

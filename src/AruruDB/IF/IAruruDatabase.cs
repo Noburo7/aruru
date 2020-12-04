@@ -49,6 +49,11 @@ namespace AruruDB
         ITrackTypeTable TrackTypeTable { get; }
 
         /// <summary>
+        /// 備考テーブル
+        /// </summary>
+        IRemarkTable RemarkTable { get; }
+
+        /// <summary>
         /// コースの距離リストを返す
         /// </summary>
         /// <param name="trackNm">競馬場名</param>

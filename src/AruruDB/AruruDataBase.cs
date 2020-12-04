@@ -51,6 +51,11 @@ namespace AruruDB
         public ITrackTypeTable TrackTypeTable { get; }
 
         /// <summary>
+        /// 備考テーブル
+        /// </summary>
+        public IRemarkTable RemarkTable { get; }
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="dbName"></param>
@@ -66,7 +71,8 @@ namespace AruruDB
                 (TrackConditionTable = new TrackConditionTable(_DB)),
                 (CourseTable = new CourseTable(_DB)),
                 (RaceTable = new RaceTable(_DB)),
-                (BakenTable = new BakenTable(_DB))
+                (BakenTable = new BakenTable(_DB)),
+                (RemarkTable = new RemarkTable(_DB))
             };
 
             //SQLiteファイルがない場合は初期化する
@@ -139,7 +145,6 @@ namespace AruruDB
                     bakenRecord.Payout = baken.Payout;
                     BakenTable.InsertRecord(bakenRecord);
                 }
-                BakenTable.ReadTable();
             }
         }
 

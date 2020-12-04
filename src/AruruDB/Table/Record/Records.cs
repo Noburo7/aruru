@@ -59,5 +59,11 @@
         public int BakenTypeID { get; set; }
         public int Investment { get; set; }
         public int Payout { get; set; }
-    }    
+    }
+    
+    internal class RemarkRecord : IRemarkRecord
+    {
+        public int RaceID { get; set; }
+        public string Remark { get; set; }
+    }
 }

@@ -19,6 +19,7 @@
     <None Remove="Sql\Table\06_T_Course.sql" />
     <None Remove="Sql\Table\07_T_Race.sql" />
     <None Remove="Sql\Table\08_T_Baken.sql" />
+    <None Remove="Sql\Table\09_T_Remark.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +63,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sql\Table\06_T_Course.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sql\Table\09_T_Remark.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
