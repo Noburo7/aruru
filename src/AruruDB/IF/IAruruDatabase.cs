@@ -65,7 +65,7 @@ namespace AruruDB
         /// レース・馬券を登録する
         /// </summary>
         /// <param name="baken"></param>
-        void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> baken);
+        void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> baken, string remark);
 
         /// <summary>
         /// レースIDを返す

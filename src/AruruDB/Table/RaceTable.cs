@@ -74,12 +74,14 @@ namespace AruruDB.Table
                 + $"{record.IsOnlyFemale},"
                 + $"{record.IsOnlyYouth})";
             SQLiteDB.ExecuteSql(sql);
+            ReadTable();
         }
 
         public void DeleteRecord(int raceID)
         {
             var sql = $"DELETE FROM {_raceTableNm} WHERE race_id IS {raceID};";
             SQLiteDB.ExecuteSql(sql);
+            ReadTable();
         }
 
         /// <summary>

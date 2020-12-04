@@ -59,5 +59,21 @@ namespace AruruDB.Table
                 throw ex;
             }
         }
+
+        public void InsertRecord(int raceID, string remark)
+        {
+            var sql = $"INSERT INTO {_remarkTableNm} "
+                + $"VALUES({raceID}, {remark})";
+            SQLiteDB.ExecuteSql(sql);
+            ReadTable();
+        }
+
+        public void DeleteRecord(int raceID)
+        {
+            var sql = $"DELETE FROM {_remarkTableNm} WHERE race_id IS {raceID};";
+            SQLiteDB.ExecuteSql(sql);
+            ReadTable();
+        }
+
     }
 }

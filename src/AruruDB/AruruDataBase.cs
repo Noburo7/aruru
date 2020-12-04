@@ -106,7 +106,7 @@ namespace AruruDB
         /// レース・馬券を登録する
         /// </summary>
         /// <param name="baken"></param>
-        public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> bakens)
+        public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> bakens, string remark)
         {
             var courseID = CourseTable.CourseID(TrackTable.TrackID(raceInfo.TrackNm), TrackTypeTable.TrackTypeID(raceInfo.TrackTypeNm), raceInfo.Distance);
             var trackConditionID = TrackConditionTable.TrackConditionID(raceInfo.TrackConditionNm);
@@ -132,7 +132,6 @@ namespace AruruDB
                 RaceTable.InsertRecord(raceRecord);
 
                 //レースID取得
-                RaceTable.ReadTable();
                 var raceID = RaceTable.RaceID(raceRecord.Date, raceRecord.CourseID, raceRecord.RaceNumber);
 
                 //馬券登録
@@ -145,6 +144,9 @@ namespace AruruDB
                     bakenRecord.Payout = baken.Payout;
                     BakenTable.InsertRecord(bakenRecord);
                 }
+
+                //備考登録
+                RemarkTable.InsertRecord(raceID, remark);
             }
         }
 
@@ -164,9 +166,9 @@ namespace AruruDB
         public void DeleteRaceBakenRecord(string date, string trackNm, int raceNum)
         {
             var raceID = GetRaceID(date, trackNm, raceNum);
+            RemarkTable.DeleteRecord(raceID);
             BakenTable.DeleteRecords(raceID);
             RaceTable.DeleteRecord(raceID);
-            RaceTable.ReadTable();
         }
 
         /// <summary>

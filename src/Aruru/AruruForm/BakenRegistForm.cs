@@ -245,7 +245,7 @@ namespace Aruru.AruruForm
             //レース情報と馬券をDBに登録
             try
             {
-                _DB.InsertBakenResult(GenerateRaceInfo(), GenerateBakenList());
+                _DB.InsertBakenResult(GenerateRaceInfo(), GenerateBakenList(), RemarkTextBox.Text);
                 MessageBox.Show("登録完了！", "馬券登録", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
