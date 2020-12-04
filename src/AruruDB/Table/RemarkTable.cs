@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using AruruDB.Table.Record;
 
 namespace AruruDB.Table
@@ -63,7 +64,7 @@ namespace AruruDB.Table
         public void InsertRecord(int raceID, string remark)
         {
             var sql = $"INSERT INTO {_remarkTableNm} "
-                + $"VALUES({raceID}, {remark})";
+                + $"VALUES({raceID}, '{remark}')";
             SQLiteDB.ExecuteSql(sql);
             ReadTable();
         }
@@ -75,5 +76,9 @@ namespace AruruDB.Table
             ReadTable();
         }
 
+        public string GetRemark(int raceID)
+        {
+            return Records.Where(o => o.RaceID == raceID).First().Remark;
+        }
     }
 }

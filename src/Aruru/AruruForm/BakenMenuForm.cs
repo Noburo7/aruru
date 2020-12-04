@@ -104,12 +104,15 @@ namespace Aruru.AruruForm
 
         private void BakenListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ShowBakenRegistForm();
+            ShowBakenInfoForm();
         }
 
-        private void ShowBakenRegistForm()
+        private void ShowBakenInfoForm()
         {
-            //TODO:Implement
+            using (var bakenInfoForm = new BakenInfoForm(_aruruDB, SelectedItemRaceID()))
+            {
+                bakenInfoForm.ShowDialog();
+            }
         }
 
         private int SelectedItemRaceID()

@@ -27,6 +27,8 @@ namespace AruruDB.Table
 
         int RaceID(string date, IEnumerable<ICourseRecord> courseList, int raceNumber);
 
+        IRaceRecord GetRaceRecord(int raceID);
+
         bool ExistRecord(string date, int courseID, int raceNumber);
     }
 }

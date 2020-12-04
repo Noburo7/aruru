@@ -111,6 +111,11 @@ namespace AruruDB.Table
             return raceID;
         }
 
+        public IRaceRecord GetRaceRecord(int raceID)
+        {
+            return Records.Where(o => o.ID == raceID).First();
+        }
+
         public bool ExistRecord(string date, int courseID, int raceNumber)
         {
             return Records.Any(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber);

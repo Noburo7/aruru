@@ -43,6 +43,7 @@
     <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AruruForm\BakenInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AruruForm\BakenInfoForm.Designer.cs">
+      <DependentUpon>BakenInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AruruForm\BakenMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +80,9 @@
     <Compile Include="Model\Race.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AruruForm\BakenInfoForm.resx">
+      <DependentUpon>BakenInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\BakenMenuForm.resx">
       <DependentUpon>BakenMenuForm.cs</DependentUpon>
     </EmbeddedResource>

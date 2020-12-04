@@ -10,5 +10,7 @@ namespace AruruDB.Table
         void InsertRecord(int raceID, string remark);
 
         void DeleteRecord(int raceID);
+
+        string GetRemark(int raceID);
     }
 }

@@ -85,5 +85,10 @@ namespace AruruDB.Table
         {
             return Records.Where(o => o.TrackID == trackID);
         }
+
+        public ICourseRecord GetCourseInfo(int courseID)
+        {
+            return Records.Where(o => o.ID == courseID).First();
+        }
     }
 }
