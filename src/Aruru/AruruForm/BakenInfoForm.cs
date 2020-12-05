@@ -18,6 +18,7 @@ namespace Aruru.AruruForm
             InitializeComponent();
             _db = database;
             _raceID = raceID;
+            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -32,6 +33,17 @@ namespace Aruru.AruruForm
 
         private void InitListBox(IRaceRecord raceInfo, IEnumerable<IBakenRecord>bakenInfo, string remark)
         {
+            var text = CreateRaceInfo(raceInfo);
+            text += Environment.NewLine;
+            text += CreateBakenInfo(bakenInfo);
+            text += Environment.NewLine;
+            text += CreateRemarkText(remark);
+            BakenInfoTextBox.Text = text;
+            BakenInfoTextBox.SelectionStart = 0;
+        }
+
+        private string CreateRaceInfo(IRaceRecord raceInfo)
+        {
             var text = "◆レース情報" + Environment.NewLine;
             var courseInfo = _db.CourseTable.GetCourseInfo(raceInfo.CourseID);
             var trackNm = _db.TrackTable.Records.Where(o => o.ID == courseInfo.TrackID).First().Name;
@@ -44,28 +56,33 @@ namespace Aruru.AruruForm
 
             if (raceInfo.IsOnlyYouth == 1)
             {
-                text += " 馬齢";
+                text += "馬齢 ";
             }
 
             if (raceInfo.IsOnlyFemale == 1)
             {
-                text += " 牝馬";
+                text += "牝馬 ";
             }
 
             if (raceInfo.IsHandicap == 1)
             {
-                text += " ハンデ";
+                text += "ハンデ";
             }
 
-            text += Environment.NewLine + Environment.NewLine;
-            text += "◆馬券" + Environment.NewLine;
+            text += Environment.NewLine;
+            return text;
+        }
+
+        private string CreateBakenInfo(IEnumerable<IBakenRecord> bakenInfo)
+        {
+            var text = "◆馬券" + Environment.NewLine;
             foreach (var baken in bakenInfo)
             {
                 text += _db.BakenTypeTable.BakenType(baken.BakenTypeID);
                 text += baken.Investment + "円 → " + baken.Payout + "円";
                 if (baken.Payout > 0)
                 {
-                    text += " 収支:" + (baken.Payout - baken.Investment) + "円";
+                    text += " 収支：" + (baken.Payout - baken.Investment) + "円";
                     text += Environment.NewLine;
                 }
             }
@@ -75,16 +92,18 @@ namespace Aruru.AruruForm
                 text += Environment.NewLine;
                 text += "合計購入額： " + bakenInfo.Sum(o => o.Investment) + "円" + Environment.NewLine;
                 text += "合計払戻額： " + bakenInfo.Sum(o => o.Payout) + "円" + Environment.NewLine;
-                text += "合計収支　： " + (bakenInfo.Sum(o => o.Payout) - bakenInfo.Sum(o => o.Investment)) + "円";
-                text += Environment.NewLine;
+                text += "合計収支　： " + (bakenInfo.Sum(o => o.Payout) - bakenInfo.Sum(o => o.Investment))
+                    + "円" + Environment.NewLine;
             }
 
-            text += Environment.NewLine;
-            text += "◆備考" + Environment.NewLine;
-            text += remark;
+            return text;
+        }
 
-            BakenInfoTextBox.Text = text;
-            BakenInfoTextBox.SelectionStart = 0;
+        private string CreateRemarkText(string remark)
+        {
+            var text = "◆備考" + Environment.NewLine;
+            text += remark;
+            return text;
         }
     }
 }

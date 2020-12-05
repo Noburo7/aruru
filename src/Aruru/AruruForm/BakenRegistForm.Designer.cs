@@ -863,7 +863,6 @@
             this.RemarkTextBox.Name = "RemarkTextBox";
             this.RemarkTextBox.Size = new System.Drawing.Size(345, 56);
             this.RemarkTextBox.TabIndex = 33;
-            this.RemarkTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // BakenRegistForm
             // 

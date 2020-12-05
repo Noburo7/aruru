@@ -42,6 +42,7 @@
             this.BakenInfoTextBox.Name = "BakenInfoTextBox";
             this.BakenInfoTextBox.Size = new System.Drawing.Size(440, 381);
             this.BakenInfoTextBox.TabIndex = 0;
+            this.BakenInfoTextBox.TabStop = false;
             // 
             // BakenInfoForm
             // 
