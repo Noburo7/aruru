@@ -36,18 +36,20 @@
             // BakenDBDirBrowseButton
             // 
             this.BakenDBDirBrowseButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BakenDBDirBrowseButton.Location = new System.Drawing.Point(464, 37);
+            this.BakenDBDirBrowseButton.Location = new System.Drawing.Point(464, 35);
             this.BakenDBDirBrowseButton.Name = "BakenDBDirBrowseButton";
-            this.BakenDBDirBrowseButton.Size = new System.Drawing.Size(75, 25);
+            this.BakenDBDirBrowseButton.Size = new System.Drawing.Size(75, 22);
             this.BakenDBDirBrowseButton.TabIndex = 6;
             this.BakenDBDirBrowseButton.Text = "参照";
             this.BakenDBDirBrowseButton.UseVisualStyleBackColor = true;
+            this.BakenDBDirBrowseButton.Click += new System.EventHandler(this.BakenDBDirBrowseButton_Click);
             // 
             // BakenDBDirTextBox
             // 
             this.BakenDBDirTextBox.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BakenDBDirTextBox.Location = new System.Drawing.Point(17, 37);
             this.BakenDBDirTextBox.Name = "BakenDBDirTextBox";
+            this.BakenDBDirTextBox.ReadOnly = true;
             this.BakenDBDirTextBox.Size = new System.Drawing.Size(441, 25);
             this.BakenDBDirTextBox.TabIndex = 5;
             // 

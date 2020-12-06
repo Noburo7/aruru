@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Linq;
+using System.IO;
 using AruruDB;
 
 namespace Aruru.AruruForm
@@ -10,13 +11,19 @@ namespace Aruru.AruruForm
     /// </summary>
     public partial class BakenMenuForm : Form
     {
-        private IAruruDatabase _aruruDB = new AruruDatabase("AruruDB.sqlite");
+        private IAruruDatabase _aruruDB;
         private static readonly string _dateDelimiter = "/";
 
         public BakenMenuForm()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
+            var dbDir = Properties.Settings.Default.BakenDBDir;
+            if (string.IsNullOrEmpty(dbDir) || !Directory.Exists(dbDir))
+            {
+                dbDir = Application.ExecutablePath;
+            }
+            _aruruDB = new AruruDatabase(Path.Combine(dbDir, "AruruDB.sqlite"));
         }
 
         private void NewRegistButton_Click(object sender, EventArgs e)
