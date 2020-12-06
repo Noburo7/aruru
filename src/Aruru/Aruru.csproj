@@ -70,17 +70,23 @@
     <Compile Include="AruruForm\BakenRegistForm.Designer.cs">
       <DependentUpon>BakenRegistForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AruruForm\ConfigForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="AruruForm\Config.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AruruForm\ConfigForm.Designer.cs">
-      <DependentUpon>ConfigForm.cs</DependentUpon>
+    <Compile Include="AruruForm\Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
     </Compile>
     <Compile Include="AruruForm\MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AruruForm\MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AruruForm\Welcome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AruruForm\Welcome.Designer.cs">
+      <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Baken.cs" />
     <Compile Include="Model\Race.cs" />
@@ -95,11 +101,14 @@
     <EmbeddedResource Include="AruruForm\BakenRegistForm.resx">
       <DependentUpon>BakenRegistForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AruruForm\ConfigForm.resx">
-      <DependentUpon>ConfigForm.cs</DependentUpon>
+    <EmbeddedResource Include="AruruForm\Config.resx">
+      <DependentUpon>Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AruruForm\Welcome.resx">
+      <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -130,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Aruru.ico" />
+    <None Include="Resources\menu.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AruruDB\AruruDB.csproj">

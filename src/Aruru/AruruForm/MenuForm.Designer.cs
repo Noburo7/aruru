@@ -48,7 +48,7 @@
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CloseButton.Location = new System.Drawing.Point(0, 584);
+            this.CloseButton.Location = new System.Drawing.Point(0, 570);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(105, 30);
             this.CloseButton.TabIndex = 4;
@@ -94,7 +94,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.Location = new System.Drawing.Point(192, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(777, 614);
+            this.MainPanel.Size = new System.Drawing.Size(800, 600);
             this.MainPanel.TabIndex = 5;
             // 
             // MenuForm
@@ -102,7 +102,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(970, 615);
+            this.ClientSize = new System.Drawing.Size(994, 601);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.BakenMenuButton);
