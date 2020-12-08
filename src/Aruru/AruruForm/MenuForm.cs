@@ -27,13 +27,18 @@ namespace Aruru.AruruForm
             config.Visible = false;
         }
 
-        private void CloseButton_Click(object sender, EventArgs e) {
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
-        private void BakenMenuButton_Click(object sender, EventArgs e) {
-            var form = new BakenMenuForm();
-            form.Show();
+        private void BakenMenuButton_Click(object sender, EventArgs e)
+        {
+            welcome.Visible = false;
+            bakenMenu.Visible = true;
+            horseAnalyze.Visible = false;
+            lapAnalyze.Visible = false;
+            config.Visible = false;
         }
 
         private void SettingButton_Click(object sender, EventArgs e)
