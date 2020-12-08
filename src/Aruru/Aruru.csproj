@@ -58,6 +58,12 @@
     <Compile Include="AruruForm\BakenInfoForm.Designer.cs">
       <DependentUpon>BakenInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AruruForm\UserControl\BakenMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AruruForm\UserControl\BakenMenu.Designer.cs">
+      <DependentUpon>BakenMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="AruruForm\BakenMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,11 +76,23 @@
     <Compile Include="AruruForm\BakenRegistForm.Designer.cs">
       <DependentUpon>BakenRegistForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AruruForm\Config.cs">
+    <Compile Include="AruruForm\UserControl\Config.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AruruForm\Config.Designer.cs">
+    <Compile Include="AruruForm\UserControl\Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AruruForm\UserControl\HorseAnalyze.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AruruForm\UserControl\HorseAnalyze.Designer.cs">
+      <DependentUpon>HorseAnalyze.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AruruForm\UserControl\LapAnalyze.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AruruForm\UserControl\LapAnalyze.Designer.cs">
+      <DependentUpon>LapAnalyze.cs</DependentUpon>
     </Compile>
     <Compile Include="AruruForm\MenuForm.cs">
       <SubType>Form</SubType>
@@ -82,10 +100,10 @@
     <Compile Include="AruruForm\MenuForm.Designer.cs">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AruruForm\Welcome.cs">
+    <Compile Include="AruruForm\UserControl\Welcome.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AruruForm\Welcome.Designer.cs">
+    <Compile Include="AruruForm\UserControl\Welcome.Designer.cs">
       <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Baken.cs" />
@@ -95,19 +113,28 @@
     <EmbeddedResource Include="AruruForm\BakenInfoForm.resx">
       <DependentUpon>BakenInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AruruForm\UserControl\BakenMenu.resx">
+      <DependentUpon>BakenMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\BakenMenuForm.resx">
       <DependentUpon>BakenMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\BakenRegistForm.resx">
       <DependentUpon>BakenRegistForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AruruForm\Config.resx">
+    <EmbeddedResource Include="AruruForm\UserControl\Config.resx">
       <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AruruForm\UserControl\HorseAnalyze.resx">
+      <DependentUpon>HorseAnalyze.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AruruForm\UserControl\LapAnalyze.resx">
+      <DependentUpon>LapAnalyze.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AruruForm\Welcome.resx">
+    <EmbeddedResource Include="AruruForm\UserControl\Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

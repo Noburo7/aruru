@@ -28,8 +28,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             this.BakenMenuButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.HorseSearchButton = new System.Windows.Forms.Button();
-            this.RapAnalysisButton = new System.Windows.Forms.Button();
+            this.HorseAnalyzeButton = new System.Windows.Forms.Button();
+            this.LapAnalysisButton = new System.Windows.Forms.Button();
             this.SettingButton = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -56,25 +56,27 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // HorseSearchButton
+            // HorseAnalyzeButton
             // 
-            this.HorseSearchButton.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.HorseSearchButton.Location = new System.Drawing.Point(0, 100);
-            this.HorseSearchButton.Name = "HorseSearchButton";
-            this.HorseSearchButton.Size = new System.Drawing.Size(192, 50);
-            this.HorseSearchButton.TabIndex = 2;
-            this.HorseSearchButton.Text = "競走馬検索";
-            this.HorseSearchButton.UseVisualStyleBackColor = true;
+            this.HorseAnalyzeButton.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.HorseAnalyzeButton.Location = new System.Drawing.Point(0, 100);
+            this.HorseAnalyzeButton.Name = "HorseAnalyzeButton";
+            this.HorseAnalyzeButton.Size = new System.Drawing.Size(192, 50);
+            this.HorseAnalyzeButton.TabIndex = 2;
+            this.HorseAnalyzeButton.Text = "競走馬検索";
+            this.HorseAnalyzeButton.UseVisualStyleBackColor = true;
+            this.HorseAnalyzeButton.Click += new System.EventHandler(this.HorseAnalyzeButton_Click);
             // 
-            // RapAnalysisButton
+            // LapAnalysisButton
             // 
-            this.RapAnalysisButton.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RapAnalysisButton.Location = new System.Drawing.Point(0, 50);
-            this.RapAnalysisButton.Name = "RapAnalysisButton";
-            this.RapAnalysisButton.Size = new System.Drawing.Size(192, 50);
-            this.RapAnalysisButton.TabIndex = 1;
-            this.RapAnalysisButton.Text = "ハロンラップ解析";
-            this.RapAnalysisButton.UseVisualStyleBackColor = true;
+            this.LapAnalysisButton.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LapAnalysisButton.Location = new System.Drawing.Point(0, 50);
+            this.LapAnalysisButton.Name = "LapAnalysisButton";
+            this.LapAnalysisButton.Size = new System.Drawing.Size(192, 50);
+            this.LapAnalysisButton.TabIndex = 1;
+            this.LapAnalysisButton.Text = "ハロンラップ解析";
+            this.LapAnalysisButton.UseVisualStyleBackColor = true;
+            this.LapAnalysisButton.Click += new System.EventHandler(this.LapAnalysisButton_Click);
             // 
             // SettingButton
             // 
@@ -107,8 +109,8 @@
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.BakenMenuButton);
             this.Controls.Add(this.SettingButton);
-            this.Controls.Add(this.HorseSearchButton);
-            this.Controls.Add(this.RapAnalysisButton);
+            this.Controls.Add(this.HorseAnalyzeButton);
+            this.Controls.Add(this.LapAnalysisButton);
             this.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -122,8 +124,8 @@
 
         private System.Windows.Forms.Button BakenMenuButton;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Button HorseSearchButton;
-        private System.Windows.Forms.Button RapAnalysisButton;
+        private System.Windows.Forms.Button HorseAnalyzeButton;
+        private System.Windows.Forms.Button LapAnalysisButton;
         private System.Windows.Forms.Button SettingButton;
         private System.Windows.Forms.Panel MainPanel;
     }

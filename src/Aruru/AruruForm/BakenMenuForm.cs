@@ -21,7 +21,7 @@ namespace Aruru.AruruForm
             var dbDir = Properties.Settings.Default.BakenDBDir;
             if (string.IsNullOrEmpty(dbDir) || !Directory.Exists(dbDir))
             {
-                dbDir = Application.ExecutablePath;
+                dbDir = Directory.GetCurrentDirectory();
             }
             _aruruDB = new AruruDatabase(Path.Combine(dbDir, "AruruDB.sqlite"));
         }
