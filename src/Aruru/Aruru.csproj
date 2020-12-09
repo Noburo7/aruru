@@ -64,12 +64,6 @@
     <Compile Include="AruruForm\UserControl\BakenMenu.Designer.cs">
       <DependentUpon>BakenMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="AruruForm\BakenMenuForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AruruForm\BakenMenuForm.Designer.cs">
-      <DependentUpon>BakenMenuForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AruruForm\BakenRegistForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\UserControl\BakenMenu.resx">
       <DependentUpon>BakenMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AruruForm\BakenMenuForm.resx">
-      <DependentUpon>BakenMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AruruForm\BakenRegistForm.resx">
       <DependentUpon>BakenRegistForm.cs</DependentUpon>
