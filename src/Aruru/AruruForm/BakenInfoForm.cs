@@ -45,14 +45,13 @@ namespace Aruru.AruruForm
         private string CreateRaceInfo(IRaceRecord raceInfo)
         {
             var text = "◆レース情報" + Environment.NewLine;
-            var courseInfo = _db.CourseTable.GetCourseInfo(raceInfo.CourseID);
-            var trackNm = _db.TrackTable.Records.Where(o => o.ID == courseInfo.TrackID).First().Name;
-            var trackType = _db.TrackTypeTable.Records.Where(o => o.ID == courseInfo.TrackTypeID).First().Name;
+            var trackNm = _db.TrackTable.Records.Where(o => o.ID == raceInfo.TrackID).First().Name;
+            var trackType = _db.TrackTypeTable.Records.Where(o => o.ID == raceInfo.TrackTypeID).First().Name;
             var classNm = _db.RaceClassTable.Records.Where(o => o.ID == raceInfo.RaceClassID).First().Name;
 
             text += raceInfo.Date.Substring(0, 4) + "/" + raceInfo.Date.Substring(4, 2) + "/" + raceInfo.Date.Substring(6, 2);
             text += $" {trackNm}{raceInfo.RaceNumber}R {raceInfo.RaceName} {classNm}";
-            text += $" {trackType}{courseInfo.Distance}m" + Environment.NewLine;
+            text += $" {trackType}{raceInfo.Distance}m" + Environment.NewLine;
 
             if (raceInfo.IsOnlyYouth == 1)
             {

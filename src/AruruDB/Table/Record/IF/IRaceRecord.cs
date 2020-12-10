@@ -16,9 +16,19 @@
         string Date { get; }
 
         /// <summary>
-        /// コースID
+        /// トラック(競馬場)ID
         /// </summary>
-        int CourseID { get; }
+        int TrackID { get; }
+
+        /// <summary>
+        /// トラックタイプID
+        /// </summary>
+        int TrackTypeID { get; }
+
+        /// <summary>
+        /// 距離
+        /// </summary>
+        int Distance { get; }
 
         /// <summary>
         /// レース番号

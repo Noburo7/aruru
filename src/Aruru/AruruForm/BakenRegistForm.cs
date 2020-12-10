@@ -199,7 +199,11 @@ namespace Aruru.AruruForm
             {
                 DistanceComboBox.Items.Add(distance);
             }
-            DistanceComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            if (TrackNameComboBox.Text != "地方" && TrackNameComboBox.Text != "海外")
+            {
+                DistanceComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
         }
 
         private void MoneyTextBoxChanged(object sender, EventArgs e)
@@ -289,7 +293,7 @@ namespace Aruru.AruruForm
             }
 
             //距離
-            if (DistanceComboBox.SelectedItem.ToString() == null)
+            if (string.IsNullOrEmpty(DistanceComboBox.Text))
             {
                 errMsg = "距離を選択してください。";
                 return false;

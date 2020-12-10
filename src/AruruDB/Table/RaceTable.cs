@@ -41,14 +41,16 @@ namespace AruruDB.Table
                     var race = new RaceRecord();
                     race.ID = int.Parse(row[0]);
                     race.Date = row[1];
-                    race.CourseID = int.Parse(row[2]);
-                    race.RaceNumber = int.Parse(row[3]);
-                    race.RaceName = row[4];
-                    race.RaceClassID = int.Parse(row[5]);
-                    race.TrackConditionID = int.Parse(row[6]);
-                    race.IsHandicap = int.Parse(row[7]);
-                    race.IsOnlyFemale = int.Parse(row[8]);
-                    race.IsOnlyYouth = int.Parse(row[9]);
+                    race.RaceNumber = int.Parse(row[2]);
+                    race.RaceName = row[3];
+                    race.TrackID = int.Parse(row[4]);
+                    race.TrackTypeID = int.Parse(row[5]);
+                    race.Distance = int.Parse(row[6]);
+                    race.RaceClassID = int.Parse(row[7]);
+                    race.TrackConditionID = int.Parse(row[8]);
+                    race.IsHandicap = int.Parse(row[9]);
+                    race.IsOnlyFemale = int.Parse(row[10]);
+                    race.IsOnlyYouth = int.Parse(row[11]);
                     records.Add(race);
                 }
                 records = records.OrderBy(o => o.Date).ToList();
@@ -65,9 +67,11 @@ namespace AruruDB.Table
             var sql = $"INSERT INTO {_raceTableNm} "
                 + "VALUES(null, "
                 + $"'{record.Date}',"
-                + $"{record.CourseID},"
                 + $"{record.RaceNumber},"
                 + $"'{record.RaceName}',"
+                + $"{record.TrackID},"
+                + $"{record.TrackTypeID},"
+                + $"{record.Distance},"
                 + $"{record.RaceClassID},"
                 + $"{record.TrackConditionID},"
                 + $"{record.IsHandicap},"
@@ -88,27 +92,12 @@ namespace AruruDB.Table
         /// レースIDを返す
         /// </summary>
         /// <param name="date">日付</param>
-        /// <param name="courseID">コースID</param>
+        /// <param name="trackID">コースID</param>
         /// <param name="raceNumber">レース番号</param>
         /// <returns>レースID</returns>
-        public int RaceID(string date, int courseID, int raceNumber)
+        public int RaceID(string date, int trackID, int raceNumber)
         {
-            return Records.Where(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber).First().ID;
-        }
-
-        public int RaceID(string date, IEnumerable<ICourseRecord> courseList, int raceNumber)
-        {
-            var raceID = -1;
-            foreach (var course in courseList)
-            {
-                if (!Records.Any(o => o.Date == date && o.CourseID == course.ID && o.RaceNumber == raceNumber))
-                {
-                    continue;
-                }
-                raceID =  Records.Where(o => o.Date == date && o.CourseID == course.ID && o.RaceNumber == raceNumber).First().ID;
-                break;
-            }
-            return raceID;
+            return Records.Where(o => o.Date == date && o.TrackID == trackID && o.RaceNumber == raceNumber).First().ID;
         }
 
         public IRaceRecord GetRaceRecord(int raceID)
@@ -116,9 +105,9 @@ namespace AruruDB.Table
             return Records.Where(o => o.ID == raceID).First();
         }
 
-        public bool ExistRecord(string date, int courseID, int raceNumber)
+        public bool ExistRecord(string date, int trackID, int raceNumber)
         {
-            return Records.Any(o => o.Date == date && o.CourseID == courseID && o.RaceNumber == raceNumber);
+            return Records.Any(o => o.Date == date && o.TrackID == trackID && o.RaceNumber == raceNumber);
         }
     }
 }

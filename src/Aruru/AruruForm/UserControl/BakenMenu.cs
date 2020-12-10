@@ -81,15 +81,13 @@ namespace Aruru.AruruForm
             foreach (var record in _aruruDB.RaceTable.Records)
             {
                 string[] row = new string[14];
-                var courseInfo = _aruruDB.CourseTable.Records.Where(o => o.ID == record.CourseID).First();
-
                 row[0] = ConvertDateToDisplayDate(record.Date);
-                row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == courseInfo.TrackID).First().Name;
+                row[1] = _aruruDB.TrackTable.Records.Where(o => o.ID == record.TrackID).First().Name;
                 row[2] = record.RaceNumber.ToString();
                 row[3] = record.RaceName;
                 row[4] = _aruruDB.RaceClassTable.Records.Where(o => o.ID == record.RaceClassID).First().Name;
-                row[5] = _aruruDB.TrackTypeTable.Records.Where(o => o.ID == courseInfo.TrackTypeID).First().Name;
-                row[6] = courseInfo.Distance.ToString();
+                row[5] = _aruruDB.TrackTypeTable.Records.Where(o => o.ID == record.TrackTypeID).First().Name;
+                row[6] = record.Distance.ToString();
                 row[7] = _aruruDB.TrackConditionTable.Records.Where(o => o.ID == record.TrackConditionID).First().Name;
                 row[8] = record.IsHandicap == 1 ? "○" : "";
                 row[9] = record.IsOnlyFemale == 1 ? "○" : "";

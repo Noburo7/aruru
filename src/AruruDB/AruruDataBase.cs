@@ -108,11 +108,12 @@ namespace AruruDB
         /// <param name="baken"></param>
         public void InsertBakenResult(IRace raceInfo, IEnumerable<IBaken> bakens, string remark)
         {
-            var courseID = CourseTable.CourseID(TrackTable.TrackID(raceInfo.TrackNm), TrackTypeTable.TrackTypeID(raceInfo.TrackTypeNm), raceInfo.Distance);
+            var trackID = TrackTable.TrackID(raceInfo.TrackNm);
+            var trackTypeID = TrackTypeTable.TrackTypeID(raceInfo.TrackTypeNm);
             var trackConditionID = TrackConditionTable.TrackConditionID(raceInfo.TrackConditionNm);
             var classID = RaceClassTable.ClassID(raceInfo.RaceClassNm);
 
-            if (RaceTable.ExistRecord(raceInfo.Date, courseID, raceInfo.RaceNum))
+            if (RaceTable.ExistRecord(raceInfo.Date, trackID, raceInfo.RaceNum))
             {
                 //テーブル更新
             }
@@ -121,9 +122,11 @@ namespace AruruDB
                 //レーステーブル新規登録
                 var raceRecord = new RaceRecord();
                 raceRecord.Date = raceInfo.Date;
-                raceRecord.CourseID = courseID;
+                raceRecord.TrackID = trackID;
+                raceRecord.TrackTypeID = trackTypeID;
                 raceRecord.RaceNumber = raceInfo.RaceNum;
                 raceRecord.RaceName = raceInfo.RaceNm;
+                raceRecord.Distance = raceInfo.Distance;
                 raceRecord.RaceClassID = classID;
                 raceRecord.TrackConditionID = trackConditionID;
                 raceRecord.IsHandicap = raceInfo.IsHandicap ? 1 : 0;
@@ -132,7 +135,7 @@ namespace AruruDB
                 RaceTable.InsertRecord(raceRecord);
 
                 //レースID取得
-                var raceID = RaceTable.RaceID(raceRecord.Date, raceRecord.CourseID, raceRecord.RaceNumber);
+                var raceID = RaceTable.RaceID(raceRecord.Date, raceRecord.TrackID, raceRecord.RaceNumber);
 
                 //馬券登録
                 foreach (var baken in bakens)
@@ -159,8 +162,7 @@ namespace AruruDB
         /// <returns>レースID</returns>
         public int GetRaceID(string date, string trackNm, int raceNum)
         {
-            var courseList = CourseTable.CourseList(TrackTable.TrackID(trackNm));
-            return RaceTable.RaceID(date, courseList, raceNum);
+            return RaceTable.RaceID(date, TrackTable.TrackID(trackNm), raceNum);
         }
 
         public void DeleteRaceBakenRecord(string date, string trackNm, int raceNum)

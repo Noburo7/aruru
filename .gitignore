@@ -9,3 +9,6 @@
 /src/AruruDB/obj
 /src/AruruDBGenerator/bin/Debug
 /src/AruruDBGenerator/obj/Debug
+/src/Aruru/bin/Release
+/src/Aruru/obj/Release
+/src/AruruDB/bin/Release/netstandard2.0
