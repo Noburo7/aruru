@@ -29,30 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BakenInfoForm));
-            this.BakenInfoTextBox = new System.Windows.Forms.TextBox();
+            this.BakenInfoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // BakenInfoTextBox
+            // BakenInfoLabel
             // 
-            this.BakenInfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BakenInfoTextBox.Location = new System.Drawing.Point(0, 0);
-            this.BakenInfoTextBox.Multiline = true;
-            this.BakenInfoTextBox.Name = "BakenInfoTextBox";
-            this.BakenInfoTextBox.Size = new System.Drawing.Size(440, 381);
-            this.BakenInfoTextBox.TabIndex = 0;
-            this.BakenInfoTextBox.TabStop = false;
+            this.BakenInfoLabel.AutoSize = true;
+            this.BakenInfoLabel.Location = new System.Drawing.Point(9, 9);
+            this.BakenInfoLabel.Name = "BakenInfoLabel";
+            this.BakenInfoLabel.Size = new System.Drawing.Size(41, 15);
+            this.BakenInfoLabel.TabIndex = 1;
+            this.BakenInfoLabel.Text = "label1";
             // 
             // BakenInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 380);
-            this.Controls.Add(this.BakenInfoTextBox);
+            this.ClientSize = new System.Drawing.Size(471, 480);
+            this.Controls.Add(this.BakenInfoLabel);
             this.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
             this.Name = "BakenInfoForm";
             this.Text = "馬券情報";
             this.Load += new System.EventHandler(this.Form_Load);
@@ -63,6 +62,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox BakenInfoTextBox;
+        private System.Windows.Forms.Label BakenInfoLabel;
     }
 }

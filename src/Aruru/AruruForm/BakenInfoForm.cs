@@ -23,8 +23,6 @@ namespace Aruru.AruruForm
 
         private void Form_Load(object sender, EventArgs e)
         {
-            BakenInfoTextBox.ReadOnly = true;
-
             var remark = _db.RemarkTable.GetRemark(_raceID);
             var bakenInfo = _db.BakenTable.GetBakenList(_raceID);
             var raceInfo = _db.RaceTable.GetRaceRecord(_raceID);
@@ -38,8 +36,7 @@ namespace Aruru.AruruForm
             text += CreateBakenInfo(bakenInfo);
             text += Environment.NewLine;
             text += CreateRemarkText(remark);
-            BakenInfoTextBox.Text = text;
-            BakenInfoTextBox.SelectionStart = 0;
+            BakenInfoLabel.Text = text;
         }
 
         private string CreateRaceInfo(IRaceRecord raceInfo)

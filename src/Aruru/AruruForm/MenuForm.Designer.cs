@@ -48,9 +48,10 @@
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CloseButton.Location = new System.Drawing.Point(0, 570);
+            this.CloseButton.Font = new System.Drawing.Font("Meiryo UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CloseButton.Location = new System.Drawing.Point(0, 550);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(105, 30);
+            this.CloseButton.Size = new System.Drawing.Size(192, 50);
             this.CloseButton.TabIndex = 4;
             this.CloseButton.Text = "終了";
             this.CloseButton.UseVisualStyleBackColor = true;
