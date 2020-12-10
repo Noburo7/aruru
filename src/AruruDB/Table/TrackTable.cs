@@ -41,6 +41,7 @@ namespace AruruDB.Table
                     var track = new TrackRecord();
                     track.ID = int.Parse(row[0]);
                     track.Name = row[1];
+                    track.IsUnique = int.Parse(row[2]);
                     records.Add(track);
                 }
                 Records = records;
@@ -54,6 +55,11 @@ namespace AruruDB.Table
         public int TrackID(string trackNm)
         {
             return Records.Where(o => o.Name == trackNm).First().ID;
+        }
+
+        public bool UniqueTrack(string trackNm)
+        {
+            return Records.Where(o => o.Name == trackNm).First().IsUnique == 1;
         }
     }
 }

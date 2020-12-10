@@ -14,5 +14,7 @@
         /// 競馬場名
         /// </summary>
         string Name { get; }
+
+        int IsUnique { get; }
     }
 }

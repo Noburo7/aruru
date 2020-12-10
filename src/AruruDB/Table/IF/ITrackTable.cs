@@ -7,5 +7,6 @@ namespace AruruDB.Table
     {
         IEnumerable<ITrackRecord> Records { get; }
         int TrackID(string trackNm);
+        bool UniqueTrack(string trackNm);
     }
 }

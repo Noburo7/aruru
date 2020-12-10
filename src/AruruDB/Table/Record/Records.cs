@@ -24,6 +24,7 @@
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public int IsUnique { get; set; }
     }
 
     internal class TrackConditionRecord : ITrackCondition

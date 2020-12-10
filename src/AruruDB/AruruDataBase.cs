@@ -113,9 +113,9 @@ namespace AruruDB
             var trackConditionID = TrackConditionTable.TrackConditionID(raceInfo.TrackConditionNm);
             var classID = RaceClassTable.ClassID(raceInfo.RaceClassNm);
 
-            if (RaceTable.ExistRecord(raceInfo.Date, trackID, raceInfo.RaceNum))
+            if (TrackTable.UniqueTrack(raceInfo.TrackNm) && RaceTable.ExistRecord(raceInfo.Date, trackID, raceInfo.RaceNum))
             {
-                //テーブル更新
+                throw new RaceDuplicationException();
             }
             else
             {

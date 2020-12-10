@@ -1,4 +1,5 @@
 CREATE TABLE t_track(
   track_id INT PRIMARY KEY,
-  track_name TEXT
+  track_name TEXT,
+  is_unique INTEGER
 );
